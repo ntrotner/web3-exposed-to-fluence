@@ -1,7 +1,5 @@
+import "./address.aqua"
 import "../src/aqua/Web3.aqua"
-
-const PEER ?= ""
-const RELAY ?= "12D3KooWSD5PToNiLQwKDXsu8JSysCwUt8BVUJEqCHcDe7P5h45e"
 
 func demoGetBalance() -> string:
     on PEER via RELAY:
@@ -19,9 +17,9 @@ func demoGetBlockNumber() -> u64:
     <- res
 
 func demoGetFeeHistory() -> FeeHistory:
-    percentiles <- Convert.strTof64("[3.2, 2.5, 3.1]")
     on PEER via RELAY:
-        res <- Eth.getFeeHistory(2, 3, percentiles)
+        percentiles <- Convert.strTou16("[25, 50, 100]")
+        res <- Eth.getFeeHistory(2, 1000, percentiles)
     <- res
 
 func demoGetGasPrice() -> string:

@@ -1,7 +1,5 @@
+import "./address.aqua"
 import "../src/aqua/Web3.aqua"
-
-const PEER ?= ""
-const RELAY ?= "12D3KooWSD5PToNiLQwKDXsu8JSysCwUt8BVUJEqCHcDe7P5h45e"
 
 func demoGetMetaInformation() -> MetaInformation:
     on PEER via RELAY:
