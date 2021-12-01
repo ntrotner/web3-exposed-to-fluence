@@ -21,7 +21,7 @@ npm run compile:ts
 
 #### Compiling the Tests (Mandatory for Running Tests)
 
-Set the `PEER` and `RELAY` attributes in `tests/*_tests.aqua`
+Set the `PEER` and `RELAY` attributes in `tests/address.aqua` and `node` in `package.json`
 
 ```bash
 npm run compile:tests
