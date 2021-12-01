@@ -1,0 +1,30 @@
+import "../src/aqua/Web3.aqua"
+
+const PEER ?= ""
+const RELAY ?= "12D3KooWSD5PToNiLQwKDXsu8JSysCwUt8BVUJEqCHcDe7P5h45e"
+
+func demoGetBalance() -> string:
+    on PEER via RELAY:
+        res <- Eth.getBalance("0x00000000219ab540356cbb839cbe05303d7705fa", nil)
+    <- res
+
+func demoGetAccounts() -> []string:
+    on PEER via RELAY:
+        res <- Eth.getAccounts()
+    <- res
+
+func demoGetBlockNumber() -> u64:
+    on PEER via RELAY:
+        res <- Eth.getBlockNumber()
+    <- res
+
+func demoGetFeeHistory() -> FeeHistory:
+    percentiles <- Convert.strTof64("[3.2, 2.5, 3.1]")
+    on PEER via RELAY:
+        res <- Eth.getFeeHistory(2, 3, percentiles)
+    <- res
+
+func demoGetGasPrice() -> string:
+    on PEER via RELAY:
+        res <- Eth.getGasPrice()
+    <- res
