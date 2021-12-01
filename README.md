@@ -1,4 +1,4 @@
-## Services.js in Fluence
+## Web3.js in Fluence
 
 ### How to Run
 
