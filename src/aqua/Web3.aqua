@@ -1,22 +1,5 @@
 data MetaInformation:
     version: string
 
-data FeeHistory:
-    oldestBlock: u64
-    baseFeePerGas: []string
-    gasUsedRatio: []f64
-    reward: []string
-
-service Convert("Convert"):
-    strTof64(input: string) -> []f64
-
 service Web3("Web3"):
     getMetaInformation() -> MetaInformation
-
-
-service Eth("Eth"):
-    getGasPrice() -> string
-    getFeeHistory(blockCount: u64, newestBlock: u64, rewardPercentiles: []f64) -> FeeHistory
-    getAccounts() -> []string
-    getBlockNumber() -> u64
-    getBalance(address: string, defaultBlock: ?string) -> string

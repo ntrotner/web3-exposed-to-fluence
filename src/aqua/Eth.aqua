@@ -1,0 +1,152 @@
+data FeeHistory:
+    oldestBlock: u64
+    baseFeePerGas: []string
+    gasUsedRatio: []f64
+    reward: []string
+
+data StorageProof:
+    key: string
+    value: string
+
+data Proof:
+    address: string
+    balance: string
+    codeHash: string
+    nonce: string
+    storageHash: string
+    accountProof: []string
+    storageProof: []StorageProof
+
+data Block:
+    number: u64
+    hash: string
+    parentHash: string
+    nonce: ?string
+    sha3Uncles: string
+    logsBloom: ?string
+    transactionsRoot: string
+    stateRoot: string
+    miner: string
+    difficulty: string
+    totalDifficulty: string
+    extraData: string
+    size: u64
+    gasLimit: u64
+    gasUsed: u64
+    timestamp: u64
+    transactions: []string
+    uncles: []string
+
+data Transaction:
+    hash: string
+    nonce: u64
+    blockHash: string
+    blockNumber: u64
+    transactionIndex: u64
+    from: string
+    to: string
+    value: string
+    gasPrice: string
+    gas: u64
+    input: string
+
+data CustomChain:
+    name: ?string
+    networkId: u64
+    chainId: u64
+
+data Common:
+    customChain: CustomChain
+    baseChain: ?string
+    hardfork: ?string
+
+data SendTransaction:
+    from: string
+    to: ?string
+    value: ?string
+    gas: ?u64
+    gasPrice: ?string
+    type: ?string
+    maxFeePerGas: ?string
+    maxPriorityFeePerGas: ?string
+    accessList: ?[]string
+    data: ?string
+    nonce: ?u64
+    chain: ?string
+    hardfork: ?string
+    common: ?Common
+
+data TX:
+    nonce: string
+    gasPrice: string
+    gas: string
+    to: string
+    value: string
+    input: string
+    r: string
+    s: string
+    v: string
+    hash: string
+
+data SignedTransaction:
+    raw: string
+    tx: TX
+
+data PastLogsOptions:
+    fromBlock: string
+    toBlock: string
+    address: string
+    topics: []string
+
+data PastLogs:
+    address: string
+    data: string
+    topics: []string
+    logIndex: u64
+    transactionIndex: u64
+    transactionHash: string
+    blockHash: ?string
+    blockNumber: ?u64
+
+data Receipt:
+    status: bool
+    blockHash: string
+    blockNumber: u64
+    transactionHash: string
+    transactionIndex: u64
+    from: string
+    to: ?string
+    contractAddress: ?string
+    cumulativeGasUsed: u64
+    gasUsed: u64
+    logs: []PastLogs
+
+service Eth("Eth"):
+    getGasPrice() -> string
+    getFeeHistory(blockCount: u64, newestBlock: u64, rewardPercentiles: []u16) -> FeeHistory
+    getAccounts() -> []string
+    getBlockNumber() -> u64
+    getBalance(address: string, defaultBlock: ?string) -> string
+    getStorageAt(address: string, position: string, defaultBlock: ?string) -> string
+    getCode(address: string, defaultBlock: ?string) -> string
+    getBlock(blockHashOrBlockNumber: string) -> Block
+    getBlockTransactionCount(blockHashOrBlockNumber: string) -> u64
+    getBlockUncleCount(blockHashOrBlockNumber: string) -> u64
+    getUncle(blockHashOrBlockNumber: string, uncleIndex: u64) -> Block
+    getTransaction(transactionHash: string) -> Transaction
+    getPendingTransactions() -> []Transaction
+    getTransactionFromBlock(hashString: string, indexNumber: u64) -> Transaction
+    getTransactionReceipt(hash: string) -> Receipt
+    getTransactionCount(address: string, defaultBlock: string) -> u64
+    sendTransaction(transactionObject: SendTransaction) -> string
+    sendSignedTransaction(signedTransactionData: string) -> string
+    sign(dataToSign: string, address: string) -> string
+    signTransaction(transactionObject: SendTransaction, address: string) -> SignedTransaction
+    call(callObject: SendTransaction, defaultBlock: string) -> string
+    estimateGas(callObject: SendTransaction) -> string
+    getPastLogs(options: PastLogsOptions) -> []PastLogs
+    getWork() -> []string
+    submitWork(nonce: string, powHash: string, digest: string) -> bool
+    getChainId() -> u64
+    getNodeInfo() -> string
+    getProof(address: string, storageKey: []string, blockNumber: string) -> Proof

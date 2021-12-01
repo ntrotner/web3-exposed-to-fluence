@@ -1,0 +1,2 @@
+service Convert("Convert"):
+    strTou16(input: string) -> []u16
