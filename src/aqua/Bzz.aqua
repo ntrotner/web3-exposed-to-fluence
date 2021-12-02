@@ -1,0 +1,6 @@
+service Bzz("Bzz"):
+    uploadString(input: string) -> string
+    uploadObject(input: string) -> string
+    uploadU8Array(input: []u8) -> string
+    downloadString(bzzHash: string) -> string
+    downloadObject(bzzHash: string) -> string
