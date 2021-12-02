@@ -173,3 +173,6 @@ service Eth("Eth"):
     getChainId() -> u64
     getNodeInfo() -> string
     getProof(address: string, storageKey: []string, blockNumber: string) -> Proof
+    getId() -> u64
+    isListening() -> bool
+    getPeerCount() -> u64

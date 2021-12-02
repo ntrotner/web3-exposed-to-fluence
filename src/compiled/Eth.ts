@@ -31,9 +31,11 @@ export interface EthDef {
     getFeeHistory: (blockCount: number, newestBlock: number, rewardPercentiles: number[], callParams: CallParams<'blockCount' | 'newestBlock' | 'rewardPercentiles'>) => { baseFeePerGas: string[]; gasUsedRatio: number[]; oldestBlock: number; reward: string[][]; } | Promise<{ baseFeePerGas: string[]; gasUsedRatio: number[]; oldestBlock: number; reward: string[][]; }>;
     getGasPrice: (callParams: CallParams<null>) => string | Promise<string>;
     getHashrate: (callParams: CallParams<null>) => number | Promise<number>;
+    getId: (callParams: CallParams<null>) => number | Promise<number>;
     getMetaInformation: (callParams: CallParams<null>) => { defaultAccount: string; defaultBlock: string; defaultChain: string; defaultHardfork: string; handleRevert: boolean; isMining: boolean; isSyncing: { currentBlock: number; highestBlock: number; knownStates: number; pulledStates: number; startingBlock: number; } | null; transactionBlockTimeout: number; transactionConfirmationBlocks: number; transactionPollingTimeout: number; } | Promise<{ defaultAccount: string; defaultBlock: string; defaultChain: string; defaultHardfork: string; handleRevert: boolean; isMining: boolean; isSyncing: { currentBlock: number; highestBlock: number; knownStates: number; pulledStates: number; startingBlock: number; } | null; transactionBlockTimeout: number; transactionConfirmationBlocks: number; transactionPollingTimeout: number; }>;
     getNodeInfo: (callParams: CallParams<null>) => string | Promise<string>;
     getPastLogs: (options: { address: string; fromBlock: string; toBlock: string; topics: string[]; }, callParams: CallParams<'options'>) => { address: string; blockHash: string | null; blockNumber: number | null; data: string; logIndex: number; topics: string[]; transactionHash: string; transactionIndex: number; }[] | Promise<{ address: string; blockHash: string | null; blockNumber: number | null; data: string; logIndex: number; topics: string[]; transactionHash: string; transactionIndex: number; }[]>;
+    getPeerCount: (callParams: CallParams<null>) => number | Promise<number>;
     getPendingTransactions: (callParams: CallParams<null>) => { blockHash: string; blockNumber: number; from: string; gas: number; gasPrice: string; hash: string; input: string; nonce: number; to: string; transactionIndex: number; value: string; }[] | Promise<{ blockHash: string; blockNumber: number; from: string; gas: number; gasPrice: string; hash: string; input: string; nonce: number; to: string; transactionIndex: number; value: string; }[]>;
     getProof: (address: string, storageKey: string[], blockNumber: string, callParams: CallParams<'address' | 'storageKey' | 'blockNumber'>) => { accountProof: string[]; address: string; balance: string; codeHash: string; nonce: string; storageHash: string; storageProof: { key: string; value: string; }[]; } | Promise<{ accountProof: string[]; address: string; balance: string; codeHash: string; nonce: string; storageHash: string; storageProof: { key: string; value: string; }[]; }>;
     getStorageAt: (address: string, position: string, defaultBlock: string | null, callParams: CallParams<'address' | 'position' | 'defaultBlock'>) => string | Promise<string>;
@@ -43,6 +45,7 @@ export interface EthDef {
     getTransactionReceipt: (hash: string, callParams: CallParams<'hash'>) => { blockHash: string; blockNumber: number; contractAddress: string | null; cumulativeGasUsed: number; from: string; gasUsed: number; logs: { address: string; blockHash: string | null; blockNumber: number | null; data: string; logIndex: number; topics: string[]; transactionHash: string; transactionIndex: number; }[]; status: boolean; to: string | null; transactionHash: string; transactionIndex: number; } | Promise<{ blockHash: string; blockNumber: number; contractAddress: string | null; cumulativeGasUsed: number; from: string; gasUsed: number; logs: { address: string; blockHash: string | null; blockNumber: number | null; data: string; logIndex: number; topics: string[]; transactionHash: string; transactionIndex: number; }[]; status: boolean; to: string | null; transactionHash: string; transactionIndex: number; }>;
     getUncle: (blockHashOrBlockNumber: string, uncleIndex: number, callParams: CallParams<'blockHashOrBlockNumber' | 'uncleIndex'>) => { difficulty: number; extraData: string; gasLimit: number; gasUsed: number; hash: string; logsBloom: string | null; miner: string; nonce: string | null; number: number; parentHash: string; sha3Uncles: string; size: number; stateRoot: string; timestamp: number; totalDifficulty: number; transactionRoot: string; transactions: string[]; uncles: string[]; } | Promise<{ difficulty: number; extraData: string; gasLimit: number; gasUsed: number; hash: string; logsBloom: string | null; miner: string; nonce: string | null; number: number; parentHash: string; sha3Uncles: string; size: number; stateRoot: string; timestamp: number; totalDifficulty: number; transactionRoot: string; transactions: string[]; uncles: string[]; }>;
     getWork: (callParams: CallParams<null>) => string[] | Promise<string[]>;
+    isListening: (callParams: CallParams<null>) => boolean | Promise<boolean>;
     sendSignedTransaction: (signedTransactionData: string, callParams: CallParams<'signedTransactionData'>) => string | Promise<string>;
     sendTransaction: (transactionObject: { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }, callParams: CallParams<'transactionObject'>) => string | Promise<string>;
     sign: (dataToSign: string, address: string, callParams: CallParams<'dataToSign' | 'address'>) => string | Promise<string>;
@@ -252,6 +255,14 @@ export function registerEth(...args: any) {
             }
         },
         {
+            "functionName" : "getId",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
             "functionName" : "getMetaInformation",
             "argDefs" : [
             ],
@@ -276,6 +287,14 @@ export function registerEth(...args: any) {
                         "tag" : "primitive"
                     }
                 }
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getPeerCount",
+            "argDefs" : [
             ],
             "returnType" : {
                 "tag" : "primitive"
@@ -431,6 +450,14 @@ export function registerEth(...args: any) {
         },
         {
             "functionName" : "getWork",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "isListening",
             "argDefs" : [
             ],
             "returnType" : {

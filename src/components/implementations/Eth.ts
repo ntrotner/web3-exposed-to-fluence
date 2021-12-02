@@ -11,6 +11,18 @@ export class Eth implements EthDef {
     this.web3 = web3
   }
   
+  getId(callParams: CallParams<null>): number | Promise<number> {
+    return this.web3.eth.net.getId()
+  }
+  
+  getPeerCount(callParams: CallParams<null>): number | Promise<number> {
+    return this.web3.eth.net.getPeerCount()
+  }
+  
+  isListening(callParams: CallParams<null>): boolean | Promise<boolean> {
+    return this.web3.eth.net.isListening()
+  }
+  
   getBalance(address: string, defaultBlock: string | null): string | Promise<string> {
     return this.web3.eth.getBalance(address, defaultBlock as BlockNumber)
   }
