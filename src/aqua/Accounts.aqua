@@ -1,0 +1,85 @@
+import "./Eth.aqua"
+
+data CipherParams:
+    iv: string
+
+data KDFParams:
+    dklen: u64
+    salt: string
+    n: u64
+    r: u64
+    p: u64
+
+data Crypto:
+    ciphertext: string
+    cipherparams: CipherParams
+    cipher: string
+    kdf: string
+    kdfparams: KDFParams
+    mac: string
+
+data EncryptedKeystoreV3:
+    version: u64
+    id: string
+    address: string
+    crypto: Crypto
+
+data TransactionSettings:
+    from: ?string
+    to: ?string
+    value: ?string
+    gas: ?u64
+    gasPrice: ?u64
+    data: ?string
+    nonce: ?u64
+    chainId: ?u64
+    common: ?Common
+    chain: ?string
+    hardfork: ?string
+
+data SignedTransaction:
+    messageHash: ?string
+    r: string
+    s: string
+    v: string
+    rawTransaction: ?string
+    transactionHash: ?string
+
+data SignatureData:
+    messageHash: string
+    r: string
+    s: string
+    v: string
+
+data SignedData:
+    message: string
+    signature: string
+    messageHash: ?string
+    r: string
+    s: string
+    v: string
+    rawTransaction: ?string
+    transactionHash: ?string
+
+data Account:
+    address: string
+    privateKey: string
+
+service Accounts("Accounts"):
+    create(entropy: ?string) -> Account
+    privateKeyToAccount(privateKey: string, ignoreLength: ?bool) -> Account
+    signTransaction(tx: TransactionSettings, privateKey: string) -> SignedTransaction
+    recoverTransaction(signature: string) -> string
+    hashMessage(message: string) -> string
+    sign(data: string, privatekey: string) -> SignedData
+    recover(message: string, signature: string, preFixed: ?bool) -> string
+    recoverWithSignatureObject(signature: SignatureData) -> string
+    encrypt(privateKey: string, password: string) -> EncryptedKeystoreV3
+    decrypt(keystoreJsonV3: EncryptedKeystoreV3, password: string) -> Account
+    wallet() -> []Account
+    walletCreate(numberOfAccounts: u64, entropy: string) -> []Account
+    walletAdd(privateKey: string) -> Account
+    walletRemove(address: string) -> bool
+    walletClear() -> []Account
+    walletEncrypt(password: string) -> []EncryptedKeystoreV3
+    walletDecrypt(keystoreArray: []EncryptedKeystoreV3, password: string) -> []Account
