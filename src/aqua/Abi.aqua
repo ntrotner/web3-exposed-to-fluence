@@ -1,0 +1,15 @@
+data AbiInput:
+    name: string
+    type: string
+    indexed: ?bool
+    internalType: ?string
+
+service Abi("Abi"):
+    encodeFunctionSignature(functionName: string) -> string
+    encodeEventSignature(eventName: string) -> string
+    encodeParameter(type: string, parameter: string) -> string
+    encodeParameters(typesArray: []string, parameters: []string) -> string
+    encodeFunctionCall(jsonInterface: string, parameters: []string) -> string
+    decodeParameter(type: string, hexString: string) -> string
+    decodeParameters(typesArray: []string, hexString: string) -> string
+    decodeLog(inputs: []AbiInput, hexString: string, topics: []string) -> string
