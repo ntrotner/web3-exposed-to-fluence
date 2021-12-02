@@ -11,6 +11,14 @@ import { registerWeb3 } from "./compiled/Web3";
 import Web3js from "web3";
 import { registerUtils } from "./compiled/Utils";
 import { Utils } from "./components/implementations/Utils";
+import { registerBzz } from "./compiled/Bzz";
+import { Bzz } from "./components/implementations/Bzz";
+import { registerAccounts } from "./compiled/Accounts";
+import { Accounts } from "./components/implementations/Accounts";
+import { registerShh } from "./compiled/Shh";
+import { Shh } from "./components/implementations/Shh";
+import { registerAbi } from "./compiled/Abi";
+import { Abi } from "./components/implementations/Abi";
 
 
 async function main() {
@@ -20,6 +28,10 @@ async function main() {
   
   let web3: Web3js = createConnection()
   
+  registerAbi(new Abi(web3))
+  registerShh(new Shh(web3))
+  registerAccounts(new Accounts(web3))
+  registerBzz(new Bzz(web3))
   registerUtils(new Utils(web3));
   registerConvert(new Convert());
   registerWeb3(new Web3(web3));
