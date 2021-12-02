@@ -8,6 +8,9 @@ import { Web3 } from "./components/implementations/Web3";
 import { registerConvert } from "./compiled/Convert";
 import { registerEth } from "./compiled/Eth";
 import { registerWeb3 } from "./compiled/Web3";
+import Web3js from "web3";
+import { registerUtils } from "./compiled/Utils";
+import { Utils } from "./components/implementations/Utils";
 
 
 async function main() {
@@ -15,8 +18,9 @@ async function main() {
     connectTo: settings.connectTo.peerId === "" && settings.connectTo.multiaddr === "" ? krasnodar[0] : settings.connectTo
   });
   
-  let web3 = createConnection()
+  let web3: Web3js = createConnection()
   
+  registerUtils(new Utils(web3));
   registerConvert(new Convert());
   registerWeb3(new Web3(web3));
   registerEth(new Eth(web3));

@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "start:tests:eth": "for i in tests/eth_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWFpcsPF...\"}' --generated; done",
-    "start:tests:web3": "for i in tests/web3_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWFpcsPF...\"}' --generated; done",
+    "start:tests:eth": "for i in tests/eth_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWDJnLXqbPJeBcEThe8zKr7H24HSRECsdhhe7MDU41npuR\"}' --generated; done",
+    "start:tests:utils": "for i in tests/utils_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWDJnLXqbPJeBcEThe8zKr7H24HSRECsdhhe7MDU41npuR\"}' --generated; done",
+    "start:tests:web3": "for i in tests/web3_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWDJnLXqbPJeBcEThe8zKr7H24HSRECsdhhe7MDU41npuR\"}' --generated; done",
     "compile:ts": "aqua -i ./src/aqua/ -o ./src/compiled",
-    "compile:tests": "cd tests && aqua -i eth_tests.aqua -o eth_tests.air -a && aqua -i bzz_tests.aqua -o bzz_tests.air -a && aqua -i web3_tests.aqua -o web3_tests.air -a"
+    "compile:tests": "cd tests && aqua -i utils_tests.aqua -o utils_tests.air -a && aqua -i eth_tests.aqua -o eth_tests.air -a && aqua -i bzz_tests.aqua -o bzz_tests.air -a && aqua -i web3_tests.aqua -o web3_tests.air -a"
   },
   "repository": {
     "type": "git",
