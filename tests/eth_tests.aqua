@@ -1,5 +1,21 @@
 import "./address.aqua"
-import "../src/aqua/Web3.aqua"
+import "../src/aqua/Eth.aqua"
+import "../src/aqua/Convert.aqua"
+
+func demoGetMetaInformation() -> EthMetaInformation:
+    on PEER via RELAY:
+        res <- Eth.getMetaInformation()
+    <- res
+
+func demoGetHashrate() -> u64:
+    on PEER via RELAY:
+        res <- Eth.getHashrate()
+    <- res
+
+func demoGetCoinbase() -> string:
+    on PEER via RELAY:
+        res <- Eth.getCoinbase()
+    <- res
 
 func demoGetBalance() -> string:
     on PEER via RELAY:
@@ -18,7 +34,7 @@ func demoGetBlockNumber() -> u64:
 
 func demoGetFeeHistory() -> FeeHistory:
     on PEER via RELAY:
-        percentiles <- Convert.strTou16("[25, 50, 100]")
+        percentiles <- Convert.strTou64("[25, 50, 100]")
         res <- Eth.getFeeHistory(2, 1000, percentiles)
     <- res
 
@@ -26,3 +42,113 @@ func demoGetGasPrice() -> string:
     on PEER via RELAY:
         res <- Eth.getGasPrice()
     <- res
+
+func demoCall() -> string:
+    on PEER via RELAY:
+        callObject <- Convert.getCallObject()
+        res <- Eth.call(callObject, nil)
+    <- res
+
+func demoEstimateGas() -> u64:
+    on PEER via RELAY:
+        estimateGasObject <- Convert.getEstimateGasObject()
+        res <- Eth.estimateGas(estimateGasObject)
+    <- res
+
+func demoGetBlock() -> Block:
+    on PEER via RELAY:
+        res <- Eth.getBlock("3150")
+    <- res
+
+func demoGetBlockTransactionCount() -> u64:
+    on PEER via RELAY:
+        res <- Eth.getBlockTransactionCount("13722798")
+    <- res
+
+func demoGetBlockUncleCount() -> u64:
+    on PEER via RELAY:
+        res <- Eth.getBlockUncleCount("13722798")
+    <- res
+
+func demoGetChainId() -> u64:
+    on PEER via RELAY:
+        res <- Eth.getChainId()
+    <- res
+
+func demoGetCode() -> string:
+    on PEER via RELAY:
+        res <- Eth.getCode("0xd5677cf67b5aa051bb40496e68ad359eb97cfbf8", nil)
+    <- res
+
+func demoGetNodeInfo() -> string:
+    on PEER via RELAY:
+        res <- Eth.getNodeInfo()
+    <- res
+
+func demoGetPastLogs() -> []PastLogs:
+    on PEER via RELAY:
+        options <- Convert.getPastLogsObject()
+        res <- Eth.getPastLogs(options)
+    <- res
+
+func demoGetPendingTransactions() -> []Transaction:
+    on PEER via RELAY:
+        res <- Eth.getPendingTransactions()
+    <- res
+
+func demoGetProof() -> Proof:
+    on PEER via RELAY:
+        proofArray <- Convert.getProofArray()
+        res <- Eth.getProof("0x1234567890123456789012345678901234567890", proofArray, "latest")
+    <- res
+
+func demoGetStorageAt() -> string:
+    on PEER via RELAY:
+        res <- Eth.getStorageAt("0x407d73d8a49eeb85d32cf465507dd71d507100c1", "0", nil)
+    <- res
+
+func demoGetTransaction() -> Transaction:
+    on PEER via RELAY:
+        res <- Eth.getTransaction("0xacf5ea76e478be9293954db308e3c4ad67fb910bf2aca4a8e44f187d78987279")
+    <- res
+
+func demoGetTransactionCount() -> u64:
+    on PEER via RELAY:
+        res <- Eth.getTransactionCount("0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe", nil)
+    <- res
+
+func demoGetTransactionFromBlock() -> Transaction:
+    on PEER via RELAY:
+        res <- Eth.getTransactionFromBlock("13722797", 2)
+    <- res
+
+func demoGetTransactionReceipt() -> Receipt:
+    on PEER via RELAY:
+        res <- Eth.getTransactionReceipt("0xacf5ea76e478be9293954db308e3c4ad67fb910bf2aca4a8e44f187d78987279")
+    <- res
+
+func demoGetUncle() -> Block:
+     on PEER via RELAY:
+         res <- Eth.getUncle("500", 0)
+     <- res
+
+func demoGetWork() -> []string:
+     on PEER via RELAY:
+         res <- Eth.getWork()
+     <- res
+
+func demoSign() -> string:
+     on PEER via RELAY:
+         res <- Eth.sign("Hello world", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
+     <- res
+
+func demoSignTransaction() -> SignedTransaction:
+     on PEER via RELAY:
+         transaction <- Convert.getTransactionToSignObject()
+         res <- Eth.signTransaction(transaction, "0x3535353535353535353535353535353535353535")
+     <- res
+
+func demoSubmitWork() -> bool:
+     on PEER via RELAY:
+         res <- Eth.submitWork("0x0000000000000001", "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000")
+     <- res

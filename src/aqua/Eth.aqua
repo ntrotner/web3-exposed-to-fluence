@@ -2,7 +2,7 @@ data FeeHistory:
     oldestBlock: u64
     baseFeePerGas: []string
     gasUsedRatio: []f64
-    reward: []string
+    reward: [][]string
 
 data StorageProof:
     key: string
@@ -24,11 +24,11 @@ data Block:
     nonce: ?string
     sha3Uncles: string
     logsBloom: ?string
-    transactionsRoot: string
+    transactionRoot: string
     stateRoot: string
     miner: string
-    difficulty: string
-    totalDifficulty: string
+    difficulty: u64
+    totalDifficulty: u64
     extraData: string
     size: u64
     gasLimit: u64
@@ -74,7 +74,7 @@ data SendTransaction:
     nonce: ?u64
     chain: ?string
     hardfork: ?string
-    common: ?Common
+    common: Common
 
 data TX:
     nonce: string
@@ -121,9 +121,32 @@ data Receipt:
     gasUsed: u64
     logs: []PastLogs
 
+data Syncing:
+    startingBlock: u64
+    currentBlock: u64
+    highestBlock: u64
+    knownStates: u64
+    pulledStates: u64
+
+data EthMetaInformation:
+    defaultAccount: string
+    defaultBlock: string
+    defaultHardfork: string
+    defaultChain: string
+    transactionBlockTimeout: u64
+    transactionConfirmationBlocks: u64
+    transactionPollingTimeout: u64
+    handleRevert: bool
+    isSyncing: ?Syncing
+    isMining: bool
+
+
 service Eth("Eth"):
+    getMetaInformation() -> EthMetaInformation
+    getHashrate() -> u64
+    getCoinbase() -> string
     getGasPrice() -> string
-    getFeeHistory(blockCount: u64, newestBlock: u64, rewardPercentiles: []u16) -> FeeHistory
+    getFeeHistory(blockCount: u64, newestBlock: u64, rewardPercentiles: []u64) -> FeeHistory
     getAccounts() -> []string
     getBlockNumber() -> u64
     getBalance(address: string, defaultBlock: ?string) -> string
@@ -137,13 +160,13 @@ service Eth("Eth"):
     getPendingTransactions() -> []Transaction
     getTransactionFromBlock(hashString: string, indexNumber: u64) -> Transaction
     getTransactionReceipt(hash: string) -> Receipt
-    getTransactionCount(address: string, defaultBlock: string) -> u64
+    getTransactionCount(address: string, defaultBlock: ?string) -> u64
     sendTransaction(transactionObject: SendTransaction) -> string
     sendSignedTransaction(signedTransactionData: string) -> string
     sign(dataToSign: string, address: string) -> string
     signTransaction(transactionObject: SendTransaction, address: string) -> SignedTransaction
-    call(callObject: SendTransaction, defaultBlock: string) -> string
-    estimateGas(callObject: SendTransaction) -> string
+    call(callObject: SendTransaction, defaultBlock: ?string) -> string
+    estimateGas(callObject: SendTransaction) -> u64
     getPastLogs(options: PastLogsOptions) -> []PastLogs
     getWork() -> []string
     submitWork(nonce: string, powHash: string, digest: string) -> bool

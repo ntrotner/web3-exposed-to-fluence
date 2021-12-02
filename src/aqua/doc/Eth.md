@@ -1,5 +1,26 @@
 ## Notes
 Most of the documentation is identical to [Eth](https://web3js.readthedocs.io/en/v1.5.2/web3-eth.html)
+Again, many parts of the documentation are invalid, so rely on the `.aqua` or `d.ts` definition.
+
+
+### Meta Information
+Following attributes are combined into one object, which can be called with `Eth.getMetaInformation()``:
+```
+defaultAccount
+defaultBlock
+defaultChain
+defaultHardfork
+handleRevert
+isMining
+isSyncing
+transactionBlockTimeout
+transactionConfirmationBlocks
+transactionPollingTimeout
+```
+`getProtocolVersion` and `maxListenersWarningThreshold` are removed from web3.js
+### getCoinbase
+Throws error when no account is registered for the node.
+
 
 ### Providers
 Following Functions aren't supported, as they don't have any
@@ -36,4 +57,22 @@ Instead, the string can be used to call the `Eth.getTransaction` function.
 ```markdown
 getBlock
 getUncle
+```
+## submitWork
+Documentation and `d.ts` are inconsistent, so passing three parameters is the way to go.
+
+## Tests
+Mining should be tested separately, as
+public nodes usually disable it.
+```markdown
+getWork
+```
+
+Signing also requires to create an account on the node,
+which the public nodes disable.
+
+Untested:
+```markdown
+sendSignedTransaction
+sendTransaction
 ```
