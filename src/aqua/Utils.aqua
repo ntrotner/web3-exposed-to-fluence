@@ -1,0 +1,59 @@
+data TypeValue:
+    type: string
+    value: string
+
+data UnitMap:
+    noether: string
+    wei: string
+    kwei: string
+    babbage: string
+    femtoether: string
+    mwei: string
+    lovelace: string
+    picoether: string
+    gwei: string
+    shannon: string
+    nanoether: string
+    nano: string
+    szabo: string
+    microether: string
+    micro: string
+    finney: string
+    milliether: string
+    milli: string
+    ether: string
+    kether: string
+    grand: string
+    mether: string
+    gether: string
+    tether: string
+
+service Utils("Utils"):
+    sha3(input: string) -> ?string
+    soliditySha3(val: []string) -> ?string
+    typedSoliditySha3(val: []TypeValue) -> ?string
+    soliditySha3Raw(val: []string) -> string
+    typedSoliditySha3Raw(val: []TypeValue) -> string
+    isHex(input: string) -> bool
+    isHexStrict(input: string) -> bool
+    isAddress(address: string) -> bool
+    toChecksumAddress(address: string) -> string
+    checkAddressChecksum(address: string) -> bool
+    toHex(input: string) -> string
+    stripHexPrefix(hex: string) -> string
+    hexToNumberString(input: string) -> string
+    hexToNumber(input: string) -> u64
+    numberToHex(input: string) -> string
+    hexToUtf8(input: string) -> string
+    hexToAscii(input: string) -> string
+    utf8ToHex(input: string) -> string
+    asciiToHex(input: string) -> string
+    hexToBytes(input: string) -> []u8
+    bytesToHex(input: []u8) -> string
+    toWei(input: string, unit: ?string) -> string
+    fromWei(input: string, unit: ?string) -> string
+    unitMap() -> UnitMap
+    padLeft(input: string, characterAmount: u64, sign: ?string) -> string
+    padRight(input: string, characterAmount: u64, sign: ?string) -> string
+    toTwosComplement(input: i64) -> string
+

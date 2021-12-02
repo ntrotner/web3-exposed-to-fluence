@@ -1,0 +1,143 @@
+import "./address.aqua"
+import "../src/aqua/Utils.aqua"
+import "../src/aqua/Convert.aqua"
+
+func demoAsciiToHex() -> string:
+    on PEER via RELAY:
+        res <- Utils.asciiToHex("I have 100!")
+    <- res
+
+func demoBytesToHex() -> string:
+    on PEER via RELAY:
+        arr <- Convert.getBytesToHex()
+        res <- Utils.bytesToHex(arr)
+    <- res
+
+func demoCheckAddressChecksum() -> bool:
+    on PEER via RELAY:
+        res <- Utils.checkAddressChecksum("0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d")
+    <- res
+
+func demoFromWei() -> string:
+    on PEER via RELAY:
+        res <- Utils.fromWei("1", nil)
+    <- res
+
+func demoHexToAscii() -> string:
+    on PEER via RELAY:
+        res <- Utils.hexToAscii("0x4920686176652031303021")
+    <- res
+
+func demoHexToBytes() -> []u8:
+    on PEER via RELAY:
+        res <- Utils.hexToBytes("0x000000ea")
+    <- res
+
+func demoHexToNumber() -> u64:
+    on PEER via RELAY:
+        res <- Utils.hexToNumber("0xea")
+    <- res
+
+func demoHexToNumberString() -> string:
+    on PEER via RELAY:
+        res <- Utils.hexToNumberString("0xea")
+    <- res
+
+func demoHexToUtf8() -> string:
+    on PEER via RELAY:
+        res <- Utils.hexToUtf8("0x49206861766520313030e282ac")
+    <- res
+
+func demoIsAddress() -> bool:
+    on PEER via RELAY:
+        res <- Utils.isAddress("0xc1912fee45d61c87cc5ea59dae31190fffff232d")
+    <- res
+
+func demoIsHex() -> bool:
+    on PEER via RELAY:
+        res <- Utils.isHex("0xc1912")
+    <- res
+
+func demoIsHexStrict() -> bool:
+    on PEER via RELAY:
+        res <- Utils.isHexStrict("0xc1912")
+    <- res
+
+func demoNumberToHex() -> string:
+    on PEER via RELAY:
+        res <- Utils.numberToHex("234")
+    <- res
+
+func demoPadLeft() -> string:
+    on PEER via RELAY:
+        res <- Utils.padLeft("0x3456ff", 20, nil)
+    <- res
+
+func demoPadRight() -> string:
+    on PEER via RELAY:
+        res <- Utils.padRight("0x3456ff", 20, nil)
+    <- res
+
+func demoSha3() -> ?string:
+    on PEER via RELAY:
+        res <- Utils.sha3("234")
+    <- res
+
+func demoStripHexPrefix() -> string:
+    on PEER via RELAY:
+        res <- Utils.stripHexPrefix("234")
+    <- res
+
+func demoToChecksumAddress() -> string:
+    on PEER via RELAY:
+        res <- Utils.toChecksumAddress("0xc1912fee45d61c87cc5ea59dae31190fffff232d")
+    <- res
+
+func demoToHex() -> string:
+    on PEER via RELAY:
+        res <- Utils.toHex("234")
+    <- res
+
+func demoToTwosComplement() -> string:
+    on PEER via RELAY:
+        res <- Utils.toTwosComplement(-2)
+    <- res
+
+func demoToWei() -> string:
+    on PEER via RELAY:
+        res <- Utils.toWei("1", nil)
+    <- res
+
+func demoUnitMap() -> UnitMap:
+    on PEER via RELAY:
+        res <- Utils.unitMap()
+    <- res
+
+func demoUtf8ToHex() -> string:
+    on PEER via RELAY:
+        res <- Utils.utf8ToHex("I have 100€")
+    <- res
+
+func demoSoliditySha3() -> ?string:
+    on PEER via RELAY:
+        arr <- Convert.getSoliditySha3Array()
+        res <- Utils.soliditySha3(arr)
+    <- res
+
+func demoSoliditySha3Raw() -> string:
+    on PEER via RELAY:
+        arr <- Convert.getSoliditySha3Array()
+        res <- Utils.soliditySha3Raw(arr)
+    <- res
+
+func demoTypedSoliditySha3() -> ?string:
+    on PEER via RELAY:
+        arr <- Convert.getTypedSoliditySha3Array()
+        res <- Utils.typedSoliditySha3(arr)
+    <- res
+
+func demoTypedSoliditySha3Raw() -> string:
+    on PEER via RELAY:
+        arr <- Convert.getTypedSoliditySha3Array()
+        res <- Utils.typedSoliditySha3Raw(arr)
+    <- res
