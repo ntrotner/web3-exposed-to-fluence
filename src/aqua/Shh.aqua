@@ -1,0 +1,64 @@
+data Info:
+    messages: u64
+    maxMessageSize: u64
+    memory: u64
+    minPow: u64
+
+data Post:
+    symKeyID: ?string
+    pubKey: ?string
+    sig: ?string
+    ttl: u64
+    topic: string
+    payload: string
+    padding: ?u64
+    powTime: ?u64
+    powTarget: ?u64
+    targetPeer: ?u64
+
+data SubscribeOptions:
+    symKeyID: string
+    privateKeyID: string
+    sig: ?string
+    topics: []string
+    minPow: ?u64
+    allowP2P: ?bool
+
+data Notification:
+    hash: string
+    sig: string
+    recipientPublicKey: string
+    timestamp: string
+    ttl: u64
+    topic: string
+    payload: string
+    padding: u64
+    pow: u64
+
+
+service Shh("Shh"):
+    getId() -> u64
+    isListening() -> bool
+    getPeerCount() -> u64
+    getVersion() -> string
+    getInfo() -> Info
+    setMaxMessageSize(size: u64) -> bool
+    setMinPoW(pow: u64) -> bool
+    markTrustedPeer(enode: string) -> bool
+    newKeyPair() -> string
+    addPrivateKey(privateKey: string) -> string
+    deleteKeyPair(id: string) -> bool
+    hasKeyPair(id: string) -> bool
+    getPublicKey(id: string) -> string
+    getPrivateKey(id: string) -> string
+    newSymKey() -> string
+    addSymKey(symKey: string) -> string
+    generateSymKeyFromPassword(password: string) -> ?string
+    hasSymKey(id: string) -> bool
+    getSymKey(id: string) -> string
+    deleteSymKey(id: string) -> bool
+    post(object: Post) -> string
+    newMessageFilter(options: SubscribeOptions) -> string
+    deleteMessageFilter(id: string) -> bool
+    getFilterMessage(id: string) -> []Notification
+
