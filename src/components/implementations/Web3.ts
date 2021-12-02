@@ -1,5 +1,5 @@
 import { Web3Def } from "../../compiled/Web3";
-import { Web3js } from "../web3";
+import Web3js from "web3";
 
 export class Web3 implements Web3Def {
   private web3: Web3js;

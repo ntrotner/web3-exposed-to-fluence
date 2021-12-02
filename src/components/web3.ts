@@ -1,9 +1,6 @@
 import { settings } from "../../settings";
+import Web3js from 'web3'
 
-const Web3 = require('web3');
-
-export type Web3js = typeof Web3
-
-export function createConnection() {
-  return new Web3(settings.web3.provider);
+export function createConnection(): Web3js {
+  return (new Web3js(settings.web3.provider));
 }
