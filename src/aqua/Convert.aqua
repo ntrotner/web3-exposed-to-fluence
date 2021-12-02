@@ -1,2 +1,14 @@
+import "./Eth.aqua"
+import "./Utils.aqua"
+
 service Convert("Convert"):
-    strTou16(input: string) -> []u16
+    strTou64(input: string) -> []u64
+    getCallObject() -> SendTransaction
+    getEstimateGasObject() -> SendTransaction
+    getPastLogsObject() -> PastLogsOptions
+    getProofArray() -> []string
+    getTransactionToSignObject() -> SendTransaction
+    getWorkArray() -> []string
+    getBytesToHex() -> []u8
+    getSoliditySha3Array() -> []string
+    getTypedSoliditySha3Array() -> []TypeValue

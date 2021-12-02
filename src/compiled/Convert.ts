@@ -17,7 +17,16 @@ import {
 // Services
 
 export interface ConvertDef {
-    strTou16: (input: string, callParams: CallParams<'input'>) => number[] | Promise<number[]>;
+    getBytesToHex: (callParams: CallParams<null>) => number[] | Promise<number[]>;
+    getCallObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
+    getEstimateGasObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
+    getPastLogsObject: (callParams: CallParams<null>) => { address: string; fromBlock: string; toBlock: string; topics: string[]; } | Promise<{ address: string; fromBlock: string; toBlock: string; topics: string[]; }>;
+    getProofArray: (callParams: CallParams<null>) => string[] | Promise<string[]>;
+    getSoliditySha3Array: (callParams: CallParams<null>) => string[] | Promise<string[]>;
+    getTransactionToSignObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
+    getTypedSoliditySha3Array: (callParams: CallParams<null>) => { type: string; value: string; }[] | Promise<{ type: string; value: string; }[]>;
+    getWorkArray: (callParams: CallParams<null>) => string[] | Promise<string[]>;
+    strTou64: (input: string, callParams: CallParams<'input'>) => number[] | Promise<number[]>;
 }
 export function registerConvert(service: ConvertDef): void;
 export function registerConvert(serviceId: string, service: ConvertDef): void;
@@ -32,7 +41,79 @@ export function registerConvert(...args: any) {
     "defaultServiceId" : "Convert",
     "functions" : [
         {
-            "functionName" : "strTou16",
+            "functionName" : "getBytesToHex",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getCallObject",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getEstimateGasObject",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getPastLogsObject",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getProofArray",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getSoliditySha3Array",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getTransactionToSignObject",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getTypedSoliditySha3Array",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getWorkArray",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "strTou64",
             "argDefs" : [
                 {
                     "name" : "input",
