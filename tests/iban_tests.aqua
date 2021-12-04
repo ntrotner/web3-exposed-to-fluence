@@ -1,0 +1,65 @@
+import "./address.aqua"
+import "../src/aqua/Iban.aqua"
+import "../src/aqua/Convert.aqua"
+import "../src/aqua/Web3.aqua"
+
+func demoToAddress() -> string:
+    on PEER via RELAY:
+        res <- Iban.toAddress("XE7338O073KYGTWWZN0F2WZ0R8PX5ZPPZS")
+    <- res
+
+func demoToIban() -> string:
+    on PEER via RELAY:
+        res <- Iban.toIban("0x00c5496aEe77C1bA1f0854206A26DdA82a81D6D8")
+    <- res
+
+func demoFromAddress() -> string:
+    on PEER via RELAY:
+        res <- Iban.fromAddress("0x00c5496aEe77C1bA1f0854206A26DdA82a81D6D8")
+    <- res
+
+func demoFromBban() -> string:
+    on PEER via RELAY:
+        res <- Iban.fromBban("ETHXREGGAVOFYORK")
+    <- res
+
+func demoCreateIndirect() -> string:
+    on PEER via RELAY:
+        obj <- Convert.getIndirectOptions()
+        res <- Iban.createIndirect(obj)
+    <- res
+
+func demoIsValid() -> bool:
+    on PEER via RELAY:
+        res <- Iban.isValid("XE7338O073KYGTWWZN0F2WZ0R8PX5ZPPZS")
+    <- res
+
+func demoIsDirect() -> bool:
+    on PEER via RELAY:
+        res <- Iban.isDirect("XE81ETHXREGGAVOFYORK")
+    <- res
+
+func demoIsIndirect() -> bool:
+    on PEER via RELAY:
+        res <- Iban.isIndirect("XE81ETHXREGGAVOFYORK")
+    <- res
+
+func demoChecksum() -> string:
+    on PEER via RELAY:
+        res <- Iban.checksum("XE81ETHXREGGAVOFYORK")
+    <- res
+
+func demoInstitution() -> string:
+    on PEER via RELAY:
+        res <- Iban.institution("XE81ETHXREGGAVOFYORK")
+    <- res
+
+func demoClient() -> string:
+    on PEER via RELAY:
+        res <- Iban.institution("XE81ETHXREGGAVOFYORK")
+    <- res
+
+func demoToString() -> string:
+    on PEER via RELAY:
+        res <- Iban.toString("XE81ETHXREGGAVOFYORK")
+    <- res

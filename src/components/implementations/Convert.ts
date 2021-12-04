@@ -175,5 +175,12 @@ export class Convert implements ConvertDef {
     };
   }
   
+  getIndirectOptions(callParams: CallParams<null>): { identifier: string; institution: string } | Promise<{ identifier: string; institution: string }> {
+    return {
+      institution: "XREG",
+      identifier: "GAVOFYORK"
+    };
+  }
+  
 }
 

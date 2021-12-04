@@ -26,6 +26,7 @@ export interface ConvertDef {
     getEstimateGasObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
     getEstimateGasOptions: (callParams: CallParams<null>) => { from: string | null; gas: number | null; value: string | null; } | null | Promise<{ from: string | null; gas: number | null; value: string | null; } | null>;
     getEventOptions: (callParams: CallParams<null>) => { filter: string | null; fromBlock: string | null; toBlock: string | null; topics: string[] | null; } | null | Promise<{ filter: string | null; fromBlock: string | null; toBlock: string | null; topics: string[] | null; } | null>;
+    getIndirectOptions: (callParams: CallParams<null>) => { identifier: string; institution: string; } | Promise<{ identifier: string; institution: string; }>;
     getPastLogsObject: (callParams: CallParams<null>) => { address: string; fromBlock: string; toBlock: string; topics: string[]; } | Promise<{ address: string; fromBlock: string; toBlock: string; topics: string[]; }>;
     getProofArray: (callParams: CallParams<null>) => string[] | Promise<string[]>;
     getSendOptions: (callParams: CallParams<null>) => { from: string; gas: number | null; gasPrice: string | null; nonce: number | null; value: string | null; } | Promise<{ from: string; gas: number | null; gasPrice: string | null; nonce: number | null; value: string | null; }>;
@@ -118,6 +119,14 @@ export function registerConvert(...args: any) {
             ],
             "returnType" : {
                 "tag" : "optional"
+            }
+        },
+        {
+            "functionName" : "getIndirectOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
             }
         },
         {

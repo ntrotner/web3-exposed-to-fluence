@@ -3,6 +3,7 @@ import "./Utils.aqua"
 import "./Web3.aqua"
 import "./Contract.aqua"
 import "./Abi.aqua"
+import "./Iban.aqua"
 
 service Convert("Convert"):
     strTou64(input: string) -> []u64
@@ -23,3 +24,4 @@ service Convert("Convert"):
     getDeployOptions() -> DeployOptions
     getCallOptions() -> ?CallOptions
     getEventOptions() -> ?EventOptions
+    getIndirectOptions() -> IndirectOptions
