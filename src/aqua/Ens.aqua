@@ -1,0 +1,59 @@
+import "./Eth.aqua"
+import "./Abi.aqua"
+import "./Web3.aqua"
+
+data Options:
+    address: string
+    jsonInterface: []AbiItem
+    from: ?string
+    gasPrice: ?string
+    gas: ?u64
+    data: ?string
+
+data Contract:
+    defaultAccount: ?string
+    defaultBlock: string
+    defaultCommon: Common
+    defaultHardfork: string
+    defaultChain: string
+    transactionPollingTimeout: u64
+    transactionConfirmationBlocks: u64
+    transactionBlockTimeout: u64
+    handleRevert: bool
+    options: Options
+
+data Error:
+    name: string
+    message: string
+    stack: ?string
+
+data ContentHash:
+    protocolType: ?string
+    decoded: ?string
+    error: ?Error
+
+service Ens("Ens"):
+    registryAddress() -> string
+    getResolver(name: string) -> Contract
+    setResolver(name: string, address: string, txConfig: ?SendTransaction) -> ENSReceipt
+    getOwner(name: string) -> string
+    setOwner(name: string, address: string, txConfig: ?SendTransaction) -> ENSReceipt
+    getTTL(name: string) -> string
+    setTTL(name: string, ttl: string, txConfig: ?SendTransaction) -> ENSReceipt
+    setSubnodeOwner(name: string, label: string, address: string, txConfig: ?SendTransaction) -> ENSReceipt
+    setRecord(name: string, owner: string, resolver: string, ttl: string, txConfig: ?SendTransaction) -> ENSReceipt
+    setSubnodeRecord(name: string, label: string, owner: string, resolver: string, ttl: string, txConfig: ?SendTransaction) -> ENSReceipt
+    setApprovalForAll(operator: string, approval: bool, txConfig: ?SendTransaction) -> ENSReceipt
+    isApprovalForAll(owner: string, operator: string) -> bool
+    recordExists(name: string) -> bool
+    getAddress(ensName: string) -> string
+    setAddress(ensName: string, address: string, txConfig: ?SendTransaction) -> ENSReceipt
+    getPubkey(ensName: string) -> StringObject
+    setPubkey(ensName: string, x: string, y: string, txConfig: ?SendTransaction) -> ENSReceipt
+    getContent(ensName: string) -> string
+    setContent(ensName: string, hash: string, txConfig: ?SendTransaction) -> ENSReceipt
+    getContenthash(ensName: string) -> ContentHash
+    setContenthash(ensName: string, hash: string, txConfig: ?SendTransaction) -> ENSReceipt
+    getMultihash(ensName: string) -> string
+    supportsInterface(name: string, interfaceId: string) -> bool
+    setMultihash(ensName: string, hash: string, txConfig: ?SendTransaction) -> ENSReceipt
