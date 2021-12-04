@@ -17,7 +17,7 @@ export class Bzz implements BzzDef {
   }
   
   async downloadString(bzzHash: string, callParams: CallParams<"bzzHash">): Promise<string> {
-    let response = this.web3.bzz.download(bzzHash);
+    let response = await this.web3.bzz.download(bzzHash);
     return String(response);
   }
   
@@ -32,13 +32,5 @@ export class Bzz implements BzzDef {
   
   uploadU8Array(input: number[], callParams: CallParams<"input">): string | Promise<string> {
     return this.web3.bzz.upload(input);
-  }
-  
-  getPeerCount(callParams: CallParams<null>): number | Promise<number> {
-    return undefined;
-  }
-  
-  isListening(callParams: CallParams<null>): boolean | Promise<boolean> {
-    return undefined;
   }
 }

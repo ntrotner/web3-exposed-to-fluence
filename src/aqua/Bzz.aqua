@@ -1,6 +1,9 @@
+import "./Web3.aqua"
+
 service Bzz("Bzz"):
     uploadString(input: string) -> string
-    uploadObject(input: string) -> string
+    uploadObject(input: StringObject) -> string
     uploadU8Array(input: []u8) -> string
     downloadString(bzzHash: string) -> string
-    downloadObject(bzzHash: string) -> string
+    downloadObject(bzzHash: string) -> StringObject
+
