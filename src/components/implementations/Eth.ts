@@ -119,19 +119,15 @@ export class Eth implements EthDef {
     return this.web3.eth.getTransactionFromBlock(hashString, indexNumber);
   }
   
-  async getTransactionReceipt(hash: string, callParams: CallParams<"hash">): Promise<{ blockHash: string; blockNumber: number; contractAddress: string | null; cumulativeGasUsed: number; from: string; gasUsed: number; logs: { address: string; blockHash: string | null; blockNumber: number | null; data: string; logIndex: number; topics: string[]; transactionHash: string; transactionIndex: number }[]; status: boolean; to: string | null; transactionHash: string; transactionIndex: number }> {
-    let result = await this.web3.eth.getTransactionReceipt(hash);
-    return {
-      ...result,
-      contractAddress: result.contractAddress || null
-    }
-  }
-  
-  async getUncle(blockHashOrBlockNumber: string, uncleIndex: number, callParams: CallParams<"blockHashOrBlockNumber" | "uncleIndex">): Promise<{ difficulty: number; extraData: string; gasLimit: number; gasUsed: number; hash: string; logsBloom: string | null; miner: string; nonce: string | null; number: number; parentHash: string; sha3Uncles: string; size: number; stateRoot: string; timestamp: number; totalDifficulty: number; transactions: string[]; transactionRoot: string; uncles: string[] }> {
+  async getUncle(blockHashOrBlockNumber: string, uncleIndex: number, callParams: CallParams<"blockHashOrBlockNumber" | "uncleIndex">): Promise<{ difficulty: number; extraData: string; gasLimit: number; gasUsed: number; hash: string; logsBloom: string | null; miner: string; nonce: string | null; number: number; parentHash: string; sha3Uncles: string; size: number; stateRoot: string; timestamp: number; totalDifficulty: number; transactions: string[]; transactionRoot: string; uncles: string[] } | null> {
     const response = await this.web3.eth.getUncle(blockHashOrBlockNumber, uncleIndex);
-    return {
-      ...response,
-      timestamp: Number(response.timestamp)
+    if (response && response.timestamp) {
+      return {
+        ...response,
+        timestamp: Number(response.timestamp)
+      }
+    } else {
+      return null;
     }
   }
   
@@ -205,6 +201,11 @@ export class Eth implements EthDef {
       transactionConfirmationBlocks: this.web3.eth.transactionConfirmationBlocks,
       transactionPollingTimeout: this.web3.eth.transactionPollingTimeout
     };
+  }
+  
+  async getTransactionReceipt(hash: string, callParams: CallParams<"hash">): Promise<{ blockHash: string; blockNumber: number; contractAddress: string | null; cumulativeGasUsed: number; from: string; gasUsed: number; logs: { address: string; blockHash: string | null; blockNumber: number | null; data: string; logIndex: number; topics: string[]; transactionHash: string; transactionIndex: number }[]; logsBloom: string; status: boolean; to: string; transactionHash: string; transactionIndex: number }> {
+    let response = await this.web3.eth.getTransactionReceipt(hash);
+    return { ...response, contractAddress: response.contractAddress || null }
   }
   
 }

@@ -19,7 +19,7 @@ func demoGetCoinbase() -> string:
 
 func demoGetBalance() -> string:
     on PEER via RELAY:
-        res <- Eth.getBalance("0x00000000219ab540356cbb839cbe05303d7705fa", nil)
+        res <- Eth.getBalance(WALLET_PUB_KEY, nil)
     <- res
 
 func demoGetAccounts() -> []string:
@@ -122,14 +122,14 @@ func demoGetTransactionFromBlock() -> Transaction:
         res <- Eth.getTransactionFromBlock("13722797", 2)
     <- res
 
-func demoGetTransactionReceipt() -> Receipt:
+func demoGetTransactionReceipt() -> ENSReceipt:
     on PEER via RELAY:
-        res <- Eth.getTransactionReceipt("0xacf5ea76e478be9293954db308e3c4ad67fb910bf2aca4a8e44f187d78987279")
+        res <- Eth.getTransactionReceipt("0x0784ae05215fd3b5710d93e4822c8e2d1c0e1bdbad0756a78e8fd50b00f0d981")
     <- res
 
-func demoGetUncle() -> Block:
+func demoGetUncle() -> ?Block:
      on PEER via RELAY:
-         res <- Eth.getUncle("500", 0)
+         res <- Eth.getUncle("11551775", 0)
      <- res
 
 func demoGetWork() -> []string:

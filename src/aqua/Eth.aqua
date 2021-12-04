@@ -109,17 +109,23 @@ data PastLogs:
     blockNumber: ?u64
 
 data Receipt:
-    status: bool
-    blockHash: string
-    blockNumber: u64
-    transactionHash: string
-    transactionIndex: u64
+    to: string
     from: string
-    to: ?string
-    contractAddress: ?string
-    cumulativeGasUsed: u64
-    gasUsed: u64
+    contractAddress: string
+    transactionIndex: u64
+    root: ?string
+    gasUsed: string
+    logsBloom: string
+    blockHash: string
+    transactionHash: string
     logs: []PastLogs
+    blockNumber: u64
+    confirmations: u64
+    cumulativeGasUsed: string
+    effectiveGasPrice: string
+    byzantium: bool
+    type: u64
+    status: ?u64
 
 data Syncing:
     startingBlock: u64
@@ -140,6 +146,19 @@ data EthMetaInformation:
     isSyncing: ?Syncing
     isMining: bool
 
+data ENSReceipt:
+    status: bool
+    transactionHash: string
+    transactionIndex: u64
+    blockHash: string
+    blockNumber: u64
+    from: string
+    to: string
+    contractAddress: ?string
+    cumulativeGasUsed: u64
+    gasUsed: u64
+    logs: []PastLogs
+    logsBloom: string
 
 service Eth("Eth"):
     getMetaInformation() -> EthMetaInformation
@@ -155,11 +174,11 @@ service Eth("Eth"):
     getBlock(blockHashOrBlockNumber: string) -> Block
     getBlockTransactionCount(blockHashOrBlockNumber: string) -> u64
     getBlockUncleCount(blockHashOrBlockNumber: string) -> u64
-    getUncle(blockHashOrBlockNumber: string, uncleIndex: u64) -> Block
+    getUncle(blockHashOrBlockNumber: string, uncleIndex: u64) -> ?Block
     getTransaction(transactionHash: string) -> Transaction
     getPendingTransactions() -> []Transaction
     getTransactionFromBlock(hashString: string, indexNumber: u64) -> Transaction
-    getTransactionReceipt(hash: string) -> Receipt
+    getTransactionReceipt(hash: string) -> ENSReceipt
     getTransactionCount(address: string, defaultBlock: ?string) -> u64
     sendTransaction(transactionObject: SendTransaction) -> string
     sendSignedTransaction(signedTransactionData: string) -> string
