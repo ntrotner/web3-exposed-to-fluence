@@ -1,2 +1,5 @@
 const PEER ?= ""
 const RELAY ?= "12D3KooWSD5PToNiLQwKDXsu8JSysCwUt8BVUJEqCHcDe7P5h45e"
+
+const WALLET_PUB_KEY ?= ""
+const WALLET_PRIV_KEY ?= ""
