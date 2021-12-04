@@ -1,0 +1,13 @@
+import "./Eth.aqua"
+import "./Accounts.aqua"
+
+service Personal("Personal"):
+    newAccount(password: string) -> string
+    sign(dataToSign: string, address: string, password: string) -> string
+    ecRecover(dataThatWasSigned: string, signature: string) -> string
+    signTransaction(transaction: SendTransaction, password: string) -> SignedTransaction
+    sendTransaction(transactionOptions: TransactionSettings, password: string) -> string
+    unlockAccount(address: string, password: string, unlockDuration: u64) -> bool
+    lockAccount(address: string) -> bool
+    getAccounts() -> []string
+    importRawKey(privateKey: string, password: string) -> string
