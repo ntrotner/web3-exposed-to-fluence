@@ -1,0 +1,76 @@
+import "./Web3.aqua"
+import "./Eth.aqua"
+import "./Abi.aqua"
+import "./Accounts.aqua"
+
+data ContractOptions:
+    from: ?string
+    gasPrice: ?string
+    gas: ?u64
+    data: ?string
+
+data DeployOptions:
+    data: string
+    arguments: ?[]string
+
+data DefaultData:
+    defaultAccount: ?string
+    defaultBlock: ?string
+    defaultBlockNumber: ?u64
+    defaultHardfork: ?string
+    defaultChain: ?string
+    defaultCommon: ?Common
+    transactionBlockTimeout: ?u64
+    transactionConfirmationBlocks: ?u64
+    transactionPollingTimeout: ?u64
+    handleRevert: ?bool
+
+data CallOptions:
+    from: ?string
+    gasPrice: ?string
+    gas: ?u64
+
+data EstimateGasOptions:
+    from: ?string
+    gas: ?u64
+    value: ?string
+
+data SendOptions:
+    from: string
+    gasPrice: ?string
+    gas: ?u64
+    value: ?string
+    nonce: ?u64
+
+data EventOptions:
+    filter: ?StringObject
+    fromBlock: ?string
+    toBlock: ?string
+    topics: ?[]string
+
+data RawEvent:
+    data: string
+    topics: []string
+
+data EventObject:
+    event: string
+    signature: ?string
+    address: string
+    returnValues: StringObject
+    logIndex: u64
+    transactionIndex: u64
+    transactionHash: string
+    blockHash: ?string
+    blockNumber: ?u64
+    raw: RawEvent
+
+service Contract("Contract"):
+    deploySend(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, deployOptions: DeployOptions, sendOptions: SendOptions) -> string
+    deployEstimateGas(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, deployOptions: DeployOptions, gasOption: ?EstimateGasOptions) -> u64
+    deployEncodeABI(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, deployOptions: DeployOptions) -> string
+    methodCall(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, methodName: string, parameters: StringArray, callOptions: ?CallOptions) -> StringObject
+    methodSend(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, methodName: string, parameters: StringArray, sendOptions: SendOptions) -> StringObject
+    methodEstimateGas(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, methodName: string, parameters: StringArray, estimateGasOptions: ?EstimateGasOptions) -> u64
+    methodEncodeABI(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, methodName: string, parameters: StringArray) -> string
+    getAllEvents(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, eventOptions: ?EventOptions) -> []EventObject
+    getPastEvents(jsonInterface: []AbiItem, address: ?string, options: ?ContractOptions, event: string, eventOptions: ?EventOptions) -> []EventObject

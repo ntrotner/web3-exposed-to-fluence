@@ -1,0 +1,23 @@
+import "./address.aqua"
+import "../src/aqua/Bzz.aqua"
+import "../src/aqua/Convert.aqua"
+import "../src/aqua/Contract.aqua"
+
+func demoDeploySend() -> string:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        deployOptions <- Convert.getDeployOptions()
+        sendOptions <- Convert.getSendOptions()
+        -- res <- Contract.deploySend(jsonInterface, nil, contractOptions, deployOptions, sendOptions)
+        res = ""
+    <- res
+
+func demoDeployEstimateGas() -> u64:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        deployOptions <- Convert.getDeployOptions()
+        gasOptions <- Convert.getEstimateGasOptions()
+        res <- Contract.deployEstimateGas(jsonInterface, nil, contractOptions, deployOptions, gasOptions)
+    <- res
