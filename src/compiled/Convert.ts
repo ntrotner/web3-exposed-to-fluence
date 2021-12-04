@@ -17,14 +17,22 @@ import {
 // Services
 
 export interface ConvertDef {
+    getABIItem: (callParams: CallParams<null>) => { anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string; }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string; }[] | null; payable: boolean | null; stateMutability: string | null; type: string; }[] | Promise<{ anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string; }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string; }[] | null; payable: boolean | null; stateMutability: string | null; type: string; }[]>;
     getBytesToHex: (callParams: CallParams<null>) => number[] | Promise<number[]>;
     getCallObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
+    getCallOptions: (callParams: CallParams<null>) => { from: string | null; gas: number | null; gasPrice: string | null; } | null | Promise<{ from: string | null; gas: number | null; gasPrice: string | null; } | null>;
+    getContractOptions: (callParams: CallParams<null>) => { data: string | null; from: string | null; gas: number | null; gasPrice: string | null; } | null | Promise<{ data: string | null; from: string | null; gas: number | null; gasPrice: string | null; } | null>;
+    getDeployOptions: (callParams: CallParams<null>) => { arguments: string[] | null; data: string; } | Promise<{ arguments: string[] | null; data: string; }>;
     getEstimateGasObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
+    getEstimateGasOptions: (callParams: CallParams<null>) => { from: string | null; gas: number | null; value: string | null; } | null | Promise<{ from: string | null; gas: number | null; value: string | null; } | null>;
+    getEventOptions: (callParams: CallParams<null>) => { filter: string | null; fromBlock: string | null; toBlock: string | null; topics: string[] | null; } | null | Promise<{ filter: string | null; fromBlock: string | null; toBlock: string | null; topics: string[] | null; } | null>;
     getPastLogsObject: (callParams: CallParams<null>) => { address: string; fromBlock: string; toBlock: string; topics: string[]; } | Promise<{ address: string; fromBlock: string; toBlock: string; topics: string[]; }>;
     getProofArray: (callParams: CallParams<null>) => string[] | Promise<string[]>;
+    getSendOptions: (callParams: CallParams<null>) => { from: string; gas: number | null; gasPrice: string | null; nonce: number | null; value: string | null; } | Promise<{ from: string; gas: number | null; gasPrice: string | null; nonce: number | null; value: string | null; }>;
     getSoliditySha3Array: (callParams: CallParams<null>) => string[] | Promise<string[]>;
     getTransactionToSignObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
     getTypedSoliditySha3Array: (callParams: CallParams<null>) => { type: string; value: string; }[] | Promise<{ type: string; value: string; }[]>;
+    getUploadObject: (callParams: CallParams<null>) => string | Promise<string>;
     getWorkArray: (callParams: CallParams<null>) => string[] | Promise<string[]>;
     strTou64: (input: string, callParams: CallParams<'input'>) => number[] | Promise<number[]>;
 }
@@ -40,6 +48,14 @@ export function registerConvert(...args: any) {
         {
     "defaultServiceId" : "Convert",
     "functions" : [
+        {
+            "functionName" : "getABIItem",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
         {
             "functionName" : "getBytesToHex",
             "argDefs" : [
@@ -57,11 +73,51 @@ export function registerConvert(...args: any) {
             }
         },
         {
+            "functionName" : "getCallOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "optional"
+            }
+        },
+        {
+            "functionName" : "getContractOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "optional"
+            }
+        },
+        {
+            "functionName" : "getDeployOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
             "functionName" : "getEstimateGasObject",
             "argDefs" : [
             ],
             "returnType" : {
                 "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getEstimateGasOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "optional"
+            }
+        },
+        {
+            "functionName" : "getEventOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "optional"
             }
         },
         {
@@ -74,6 +130,14 @@ export function registerConvert(...args: any) {
         },
         {
             "functionName" : "getProofArray",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getSendOptions",
             "argDefs" : [
             ],
             "returnType" : {
@@ -98,6 +162,14 @@ export function registerConvert(...args: any) {
         },
         {
             "functionName" : "getTypedSoliditySha3Array",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getUploadObject",
             "argDefs" : [
             ],
             "returnType" : {

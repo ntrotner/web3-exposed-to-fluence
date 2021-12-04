@@ -109,5 +109,71 @@ export class Convert implements ConvertDef {
     ];
   }
   
+  getUploadObject(callParams: CallParams<null>): string | Promise<string> {
+    return JSON.stringify({ "hello": "world" });
+  }
+  
+  getABIItem(callParams: CallParams<null>): { anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string }[] | null; payable: boolean | null; stateMutability: string | null; type: string }[] | Promise<{ anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string }[] | null; payable: boolean | null; stateMutability: string | null; type: string }[]> {
+    return [{
+      "anonymous": null,
+      "gas": null,
+      "constant": true,
+      "inputs": [],
+      "name": "testFunc",
+      "outputs": [{ "name": "", "type": "int256", "internalType": null }],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    }]
+  }
+  
+  getCallOptions(callParams: CallParams<null>): { from: string | null; gas: number | null; gasPrice: string | null } | Promise<{ from: string | null; gas: number | null; gasPrice: string | null }> {
+    return {
+      from: "0xC66f1507A8c9522E8742f32C36D462173d01510A",
+      gas: 1000,
+      gasPrice: "300000000000000"
+    };
+  }
+  
+  getContractOptions(callParams: CallParams<null>): { data: string | null; from: string | null; gas: number | null; gasPrice: string | null } | Promise<{ data: string | null; from: string | null; gas: number | null; gasPrice: string | null }> {
+    return {
+      data: "f311",
+      from: "0xC66f1507A8c9522E8742f32C36D462173d01510A",
+      gas: 1000,
+      gasPrice: "300000000000000"
+    };
+  }
+  
+  getDeployOptions(callParams: CallParams<null>): { arguments: string[] | null; data: string } | Promise<{ arguments: string[] | null; data: string }> {
+    return { data: "f311", arguments: null }
+  }
+  
+  getEstimateGasOptions(callParams: CallParams<null>): { from: string | null; gas: number | null; value: string | null } | Promise<{ from: string | null; gas: number | null; value: string | null }> {
+    return {
+      from: "0xC66f1507A8c9522E8742f32C36D462173d01510A",
+      gas: 1000,
+      value: null
+    };
+  }
+  
+  getEventOptions(callParams: CallParams<null>): { filter: string | null; fromBlock: string | null; toBlock: string | null; topics: string[] | null } | null | Promise<{ filter: string | null; fromBlock: string | null; toBlock: string | null; topics: string[] | null } | null> {
+    return {
+      filter: JSON.stringify({ myIndexedParam: [20, 23], myOtherIndexedParam: '0x123456789' }),
+      fromBlock: "0",
+      toBlock: 'latest',
+      topics: null
+    };
+  }
+  
+  getSendOptions(callParams: CallParams<null>): { from: string; gas: number | null; gasPrice: string | null; nonce: number | null; value: string | null } | null | Promise<{ from: string; gas: number | null; gasPrice: string | null; nonce: number | null; value: string | null } | null> {
+    return {
+      from: "0xC66f1507A8c9522E8742f32C36D462173d01510A",
+      gas: 15000000,
+      gasPrice: "300000000000000",
+      nonce: null,
+      value: null
+    };
+  }
+  
 }
 
