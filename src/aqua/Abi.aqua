@@ -1,15 +1,33 @@
+import "./Web3.aqua"
+
 data AbiInput:
     name: string
     type: string
     indexed: ?bool
     internalType: ?string
 
+data AbiOutput:
+    name: string
+    type: string
+    internalType: ?string
+
+data AbiItem:
+    anonymous: ?bool
+    constant: ?bool
+    inputs: ?[]AbiInput
+    name: ?string
+    outputs: ?[]AbiOutput
+    payable: ?bool
+    stateMutability: ?string
+    type: string
+    gas: ?u64
+
 service Abi("Abi"):
     encodeFunctionSignature(functionName: string) -> string
     encodeEventSignature(eventName: string) -> string
     encodeParameter(type: string, parameter: string) -> string
     encodeParameters(typesArray: []string, parameters: []string) -> string
-    encodeFunctionCall(jsonInterface: string, parameters: []string) -> string
-    decodeParameter(type: string, hexString: string) -> string
-    decodeParameters(typesArray: []string, hexString: string) -> string
-    decodeLog(inputs: []AbiInput, hexString: string, topics: []string) -> string
+    encodeFunctionCall(jsonInterface: AbiItem, parameters: []string) -> string
+    decodeParameter(type: string, hexString: string) -> StringObject
+    decodeParameters(typesArray: []string, hexString: string) -> StringObject
+    decodeLog(inputs: []AbiInput, hexString: string, topics: []string) -> StringObject

@@ -21,7 +21,7 @@ export interface AbiDef {
     decodeParameter: (type: string, hexString: string, callParams: CallParams<'type' | 'hexString'>) => string | Promise<string>;
     decodeParameters: (typesArray: string[], hexString: string, callParams: CallParams<'typesArray' | 'hexString'>) => string | Promise<string>;
     encodeEventSignature: (eventName: string, callParams: CallParams<'eventName'>) => string | Promise<string>;
-    encodeFunctionCall: (jsonInterface: string, parameters: string[], callParams: CallParams<'jsonInterface' | 'parameters'>) => string | Promise<string>;
+    encodeFunctionCall: (jsonInterface: { anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string; }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string; }[] | null; payable: boolean | null; stateMutability: string | null; type: string; }, parameters: string[], callParams: CallParams<'jsonInterface' | 'parameters'>) => string | Promise<string>;
     encodeFunctionSignature: (functionName: string, callParams: CallParams<'functionName'>) => string | Promise<string>;
     encodeParameter: (type: string, parameter: string, callParams: CallParams<'type' | 'parameter'>) => string | Promise<string>;
     encodeParameters: (typesArray: string[], parameters: string[], callParams: CallParams<'typesArray' | 'parameters'>) => string | Promise<string>;
