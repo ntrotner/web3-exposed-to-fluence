@@ -1,0 +1,17 @@
+data IndirectOptions:
+    institution: string
+    identifier: string
+
+service Iban("Iban"):
+    toAddress(iban: string) -> string
+    toIban(address: string) -> string
+    fromAddress(address: string) -> string
+    fromBban(bbanAddress: string) -> string
+    createIndirect(options: IndirectOptions) -> string
+    isValid(iban: string) -> bool
+    isDirect(iban: string) -> bool
+    isIndirect(iban: string) -> bool
+    checksum(iban: string) -> string
+    institution(iban: string) -> string
+    client(iban: string) -> string
+    toString(iban: string) -> string
