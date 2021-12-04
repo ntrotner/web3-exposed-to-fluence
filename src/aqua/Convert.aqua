@@ -1,5 +1,8 @@
 import "./Eth.aqua"
 import "./Utils.aqua"
+import "./Web3.aqua"
+import "./Contract.aqua"
+import "./Abi.aqua"
 
 service Convert("Convert"):
     strTou64(input: string) -> []u64
@@ -12,3 +15,11 @@ service Convert("Convert"):
     getBytesToHex() -> []u8
     getSoliditySha3Array() -> []string
     getTypedSoliditySha3Array() -> []TypeValue
+    getUploadObject() -> StringObject
+    getABIItem() -> []AbiItem
+    getContractOptions() -> ?ContractOptions
+    getSendOptions() -> SendOptions
+    getEstimateGasOptions() -> ?EstimateGasOptions
+    getDeployOptions() -> DeployOptions
+    getCallOptions() -> ?CallOptions
+    getEventOptions() -> ?EventOptions

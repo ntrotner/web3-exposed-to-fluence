@@ -1,5 +1,8 @@
 data MetaInformation:
     version: string
 
+alias StringObject: string
+alias StringArray: string
+
 service Web3("Web3"):
     getMetaInformation() -> MetaInformation

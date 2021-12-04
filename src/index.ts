@@ -19,6 +19,14 @@ import { registerShh } from "./compiled/Shh";
 import { Shh } from "./components/implementations/Shh";
 import { registerAbi } from "./compiled/Abi";
 import { Abi } from "./components/implementations/Abi";
+import { registerEns } from "./compiled/Ens";
+import { Ens } from "./components/implementations/Ens";
+import { registerPersonal } from "./compiled/Personal";
+import { Personal } from "./components/implementations/Personal";
+import { registerContract } from "./compiled/Contract";
+import { Contract } from "./components/implementations/Contract";
+import { registerIban } from "./compiled/Iban";
+import { Iban } from "./components/implementations/Iban";
 
 
 async function main() {
@@ -28,6 +36,10 @@ async function main() {
   
   let web3: Web3js = createConnection()
   
+  registerIban(new Iban((web3)))
+  registerContract(new Contract(web3))
+  registerPersonal(new Personal(web3))
+  registerEns(new Ens((web3)))
   registerAbi(new Abi(web3))
   registerShh(new Shh(web3))
   registerAccounts(new Accounts(web3))

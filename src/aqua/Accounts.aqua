@@ -37,7 +37,7 @@ data TransactionSettings:
     chain: ?string
     hardfork: ?string
 
-data SignedTransaction:
+data SignedTransactionAccounts:
     messageHash: ?string
     r: string
     s: string
@@ -68,7 +68,7 @@ data Account:
 service Accounts("Accounts"):
     create(entropy: ?string) -> Account
     privateKeyToAccount(privateKey: string, ignoreLength: ?bool) -> Account
-    signTransaction(tx: TransactionSettings, privateKey: string) -> SignedTransaction
+    signTransaction(tx: TransactionSettings, privateKey: string) -> SignedTransactionAccounts
     recoverTransaction(signature: string) -> string
     hashMessage(message: string) -> string
     sign(data: string, privatekey: string) -> SignedData
