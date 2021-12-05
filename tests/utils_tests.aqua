@@ -1,6 +1,7 @@
 import "./address.aqua"
-import "../src/aqua/Utils.aqua"
+import "../src/aqua/types.aqua"
 import "../src/aqua/Convert.aqua"
+import "../src/aqua/Utils.aqua"
 
 func demoAsciiToHex() -> string:
     on PEER via RELAY:

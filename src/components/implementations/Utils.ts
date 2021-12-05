@@ -1,112 +1,117 @@
-import Web3js from "web3";
-import { UtilsDef } from "../../compiled/Utils";
-import { CallParams } from "@fluencelabs/fluence/dist/internal/compilerSupport/v2";
-import { Mixed, Unit } from "web3-utils";
+import Web3js from 'web3';
+import { UtilsDef } from '../../compiled/Utils';
+import { CallParams } from '@fluencelabs/fluence/dist/internal/compilerSupport/v2';
+import { Mixed, Unit } from 'web3-utils';
 
+/**
+ * allows access to the Utils module
+ *
+ * see https://web3js.readthedocs.io/en/v1.5.2/web3-utils.html
+ */
 export class Utils implements UtilsDef {
   private web3: Web3js;
   
   constructor(web3: Web3js) {
-    this.web3 = web3
+    this.web3 = web3;
   }
   
-  asciiToHex(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  asciiToHex(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.asciiToHex(input);
   }
   
-  bytesToHex(input: number[], callParams: CallParams<"input">): string | Promise<string> {
+  bytesToHex(input: number[], callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.bytesToHex(input);
   }
   
-  checkAddressChecksum(address: string, callParams: CallParams<"address">): boolean | Promise<boolean> {
+  checkAddressChecksum(address: string, callParams: CallParams<'address'>): boolean | Promise<boolean> {
     return this.web3.utils.checkAddressChecksum(address);
   }
   
-  fromWei(input: string, unit: string | null, callParams: CallParams<"input" | "unit">): string | Promise<string> {
+  fromWei(input: string, unit: string | null, callParams: CallParams<'input' | 'unit'>): string | Promise<string> {
     return this.web3.utils.fromWei(input, unit as Unit);
   }
   
-  hexToAscii(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  hexToAscii(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.hexToAscii(input);
   }
   
-  hexToBytes(input: string, callParams: CallParams<"input">): number[] | Promise<number[]> {
+  hexToBytes(input: string, callParams: CallParams<'input'>): number[] | Promise<number[]> {
     return this.web3.utils.hexToBytes(input);
   }
   
-  hexToNumber(input: string, callParams: CallParams<"input">): number | Promise<number> {
+  hexToNumber(input: string, callParams: CallParams<'input'>): number | Promise<number> {
     return this.web3.utils.hexToNumber(input);
   }
   
-  hexToNumberString(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  hexToNumberString(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.hexToNumberString(input);
   }
   
-  hexToUtf8(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  hexToUtf8(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.hexToUtf8(input);
   }
   
-  isAddress(address: string, callParams: CallParams<"address">): boolean | Promise<boolean> {
+  isAddress(address: string, callParams: CallParams<'address'>): boolean | Promise<boolean> {
     return this.web3.utils.isAddress(address);
   }
   
-  isHex(input: string, callParams: CallParams<"input">): boolean | Promise<boolean> {
+  isHex(input: string, callParams: CallParams<'input'>): boolean | Promise<boolean> {
     return this.web3.utils.isHex(input);
   }
   
-  isHexStrict(input: string, callParams: CallParams<"input">): boolean | Promise<boolean> {
+  isHexStrict(input: string, callParams: CallParams<'input'>): boolean | Promise<boolean> {
     return this.web3.utils.isHexStrict(input);
   }
   
-  numberToHex(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  numberToHex(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.numberToHex(input);
   }
   
-  padLeft(input: string, characterAmount: number, sign: string | null, callParams: CallParams<"input" | "characterAmount" | "sign">): string | Promise<string> {
+  padLeft(input: string, characterAmount: number, sign: string | null, callParams: CallParams<'input' | 'characterAmount' | 'sign'>): string | Promise<string> {
     return this.web3.utils.padLeft(input, characterAmount, sign);
   }
   
-  padRight(input: string, characterAmount: number, sign: string | null, callParams: CallParams<"input" | "characterAmount" | "sign">): string | Promise<string> {
+  padRight(input: string, characterAmount: number, sign: string | null, callParams: CallParams<'input' | 'characterAmount' | 'sign'>): string | Promise<string> {
     return this.web3.utils.padRight(input, characterAmount, sign);
   }
   
-  sha3(input: string, callParams: CallParams<"input">): string | Promise<string | null> | null {
+  sha3(input: string, callParams: CallParams<'input'>): string | Promise<string | null> | null {
     return this.web3.utils.sha3(input);
   }
   
-  soliditySha3(val: string[], callParams: CallParams<"val">): string | Promise<string | null> | null {
+  soliditySha3(val: string[], callParams: CallParams<'val'>): string | Promise<string | null> | null {
     return this.web3.utils.soliditySha3(...(val as Mixed[]));
   }
   
-  soliditySha3Raw(val: string[], callParams: CallParams<"val">): string | Promise<string> {
+  soliditySha3Raw(val: string[], callParams: CallParams<'val'>): string | Promise<string> {
     return this.web3.utils.soliditySha3Raw(...val);
   }
   
-  stripHexPrefix(hex: string, callParams: CallParams<"hex">): string | Promise<string> {
+  stripHexPrefix(hex: string, callParams: CallParams<'hex'>): string | Promise<string> {
     return this.web3.utils.stripHexPrefix(hex);
   }
   
-  toChecksumAddress(address: string, callParams: CallParams<"address">): string | Promise<string> {
+  toChecksumAddress(address: string, callParams: CallParams<'address'>): string | Promise<string> {
     return this.web3.utils.toChecksumAddress(address);
   }
   
-  toHex(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  toHex(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.toHex(input);
   }
   
-  toTwosComplement(input: number, callParams: CallParams<"input">): string | Promise<string> {
+  toTwosComplement(input: number, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.toTwosComplement(input);
   }
   
-  toWei(input: string, unit: string | null, callParams: CallParams<"input" | "unit">): string | Promise<string> {
+  toWei(input: string, unit: string | null, callParams: CallParams<'input' | 'unit'>): string | Promise<string> {
     return this.web3.utils.toWei(input, unit as Unit);
   }
   
-  typedSoliditySha3(val: { type: string; value: string }[], callParams: CallParams<"val">): string | Promise<string | null> | null {
+  typedSoliditySha3(val: { type: string; value: string }[], callParams: CallParams<'val'>): string | Promise<string | null> | null {
     return this.web3.utils.soliditySha3(...val);
   }
   
-  typedSoliditySha3Raw(val: { type: string; value: string }[], callParams: CallParams<"val">): string | Promise<string> {
+  typedSoliditySha3Raw(val: { type: string; value: string }[], callParams: CallParams<'val'>): string | Promise<string> {
     return this.web3.utils.soliditySha3Raw(...val);
   }
   
@@ -115,7 +120,7 @@ export class Utils implements UtilsDef {
     return this.web3.utils.unitMap;
   }
   
-  utf8ToHex(input: string, callParams: CallParams<"input">): string | Promise<string> {
+  utf8ToHex(input: string, callParams: CallParams<'input'>): string | Promise<string> {
     return this.web3.utils.utf8ToHex(input);
   }
 }

@@ -1,12 +1,9 @@
-import "./Eth.aqua"
-import "./Utils.aqua"
-import "./Web3.aqua"
-import "./Contract.aqua"
-import "./Abi.aqua"
-import "./Iban.aqua"
+import "./types.aqua"
 
 service Convert("Convert"):
     strTou64(input: string) -> []u64
+    getOptionalString(input: string) -> ?string
+    getOptionalBool(input: bool) -> ?bool
     getCallObject() -> SendTransaction
     getEstimateGasObject() -> SendTransaction
     getPastLogsObject() -> PastLogsOptions
@@ -18,6 +15,7 @@ service Convert("Convert"):
     getTypedSoliditySha3Array() -> []TypeValue
     getUploadObject() -> StringObject
     getABIItem() -> []AbiItem
+    getABIItemRopsten() -> []AbiItem
     getContractOptions() -> ?ContractOptions
     getSendOptions() -> SendOptions
     getEstimateGasOptions() -> ?EstimateGasOptions
@@ -25,3 +23,13 @@ service Convert("Convert"):
     getCallOptions() -> ?CallOptions
     getEventOptions() -> ?EventOptions
     getIndirectOptions() -> IndirectOptions
+    getDecodeLogArray() -> []AbiInput
+    getEncodeFunctionCallJSONInterface() -> AbiItem
+    toStringArray(input: string) -> []string
+    getTransactionOptions() -> TransactionSettings
+    getSignatureData() -> SignatureData
+    getEncryptedKeystoreV3() -> EncryptedKeystoreV3
+    getDecryptEncryptedKeystoreV3() -> []EncryptedKeystoreV3
+    getSetResolversTransaction() -> ?SendTransaction
+    getPostObject() -> Post
+    getSubscribeOptions() -> SubscribeOptions

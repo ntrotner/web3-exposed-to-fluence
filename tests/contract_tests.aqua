@@ -1,5 +1,5 @@
 import "./address.aqua"
-import "../src/aqua/Bzz.aqua"
+import "../src/aqua/types.aqua"
 import "../src/aqua/Convert.aqua"
 import "../src/aqua/Contract.aqua"
 
@@ -9,8 +9,8 @@ func demoDeploySend() -> string:
         contractOptions <- Convert.getContractOptions()
         deployOptions <- Convert.getDeployOptions()
         sendOptions <- Convert.getSendOptions()
-        -- res <- Contract.deploySend(jsonInterface, nil, contractOptions, deployOptions, sendOptions)
-        res = ""
+        address <- Convert.getOptionalString(WALLET_PUB_KEY)
+        res <- Contract.deploySend(jsonInterface, address, contractOptions, deployOptions, sendOptions)
     <- res
 
 func demoDeployEstimateGas() -> u64:
@@ -19,5 +19,26 @@ func demoDeployEstimateGas() -> u64:
         contractOptions <- Convert.getContractOptions()
         deployOptions <- Convert.getDeployOptions()
         gasOptions <- Convert.getEstimateGasOptions()
-        res <- Contract.deployEstimateGas(jsonInterface, nil, contractOptions, deployOptions, gasOptions)
+        address <- Convert.getOptionalString(WALLET_PUB_KEY)
+        res <- Contract.deployEstimateGas(jsonInterface, address, contractOptions, deployOptions, gasOptions)
+    <- res
+
+func demoDeployEncodeABI() -> string:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        deployOptions <- Convert.getDeployOptions()
+        address <- Convert.getOptionalString(WALLET_PUB_KEY)
+        res <- Contract.deployEncodeABI(jsonInterface, address, contractOptions, deployOptions)
+    <- res
+
+
+func demoMethodCall() -> StringObject:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItemRopsten()
+        contractOptions <- Convert.getContractOptions()
+        deployOptions <- Convert.getDeployOptions()
+        address <- Convert.getOptionalString("0xCE66B4B15CbCCFe031dB38be60Dfc3f98eBaEbf0")
+        -- res <- Contract.methodCall(jsonInterface, address, contractOptions, deployOptions)
+        res = ""
     <- res

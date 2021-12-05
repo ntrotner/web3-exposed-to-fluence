@@ -1,0 +1,136 @@
+import "./address.aqua"
+import "../src/aqua/Ens.aqua"
+import "../src/aqua/types.aqua"
+import "../src/aqua/Convert.aqua"
+
+func demoRegistryAddress() -> ?string:
+    on PEER via RELAY:
+        res <- Ens.registryAddress()
+    <- res
+
+func demoGetResolver() -> Contract:
+    on PEER via RELAY:
+        res <- Ens.getResolver("ethereum.eth")
+    <- res
+
+func demoSetResolver() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setResolver("thiscouldbeyourdomain.eth", WALLET_PUB_KEY, conf)
+    <- res
+
+func demoGetOwner() -> string:
+    on PEER via RELAY:
+        res <- Ens.getOwner("ethereum.eth")
+    <- res
+
+func demoSetOwner() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setOwner("thiscouldbeyourdomain.eth", WALLET_PUB_KEY, conf)
+    <- res
+
+func demoGetTTL() -> string:
+    on PEER via RELAY:
+        res <- Ens.getTTL("ethereum.eth")
+    <- res
+
+func demoSetTTL() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setTTL("ethereum.eth", "10000", conf)
+    <- res
+
+func demoSetSubnodeOwner() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setSubnodeOwner("thiscouldbeyourdomain.eth", "web3", WALLET_PUB_KEY, conf)
+    <- res
+
+func demoSetRecord() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setRecord("thiscouldbeyourdomain.eth", WALLET_PUB_KEY, "0x8443379cBaF7A68B2Cc1626Df9e4Cb47d525A0e4", "100000", conf)
+    <- res
+
+func demoSetSubnodeRecord() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setSubnodeRecord("thiscouldbeyourdomain.eth", "web3", WALLET_PUB_KEY, "0x8443379cBaF7A68B2Cc1626Df9e4Cb47d525A0e4", "1000000", conf)
+    <- res
+
+func demoSetApprovalForAll() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setApprovalForAll(WALLET_PUB_KEY, true, conf)
+    <- res
+
+func demoIsApprovalForAll() -> bool:
+    on PEER via RELAY:
+        res <- Ens.isApprovalForAll(WALLET_PUB_KEY, "0x8443379cBaF7A68B2Cc1626Df9e4Cb47d525A0e4")
+    <- res
+
+func demoRecordExists() -> bool:
+    on PEER via RELAY:
+        res <- Ens.recordExists("thiscouldbeyourdomain.eth")
+    <- res
+
+func demoGetAddress() -> string:
+    on PEER via RELAY:
+        res <- Ens.getAddress("thiscouldbeyourdomain.eth")
+    <- res
+
+func demoSetAddress() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setAddress("thiscouldbeyourdomain.eth", WALLET_PUB_KEY, conf)
+    <- res
+
+func demoGetPubkey() -> StringObject:
+    on PEER via RELAY:
+        res <- Ens.getPubkey("thiscouldbeyourdomain.eth")
+    <- res
+
+func demoSetPubkey() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setPubkey("thiscouldbeyourdomain.eth", "0x0000000000000000000000000000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000000000000000000000000000", conf)
+    <- res
+
+func demoGetContent() -> string:
+    on PEER via RELAY:
+        res <- Ens.getContent("thiscouldbeyourdomain.eth")
+    <- res
+
+func demoSetContent() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setContent("thiscouldbeyourdomain.eth", "0x0000000000000000000000000000000000000000000000000000000000000000", conf)
+    <- res
+
+func demoGetContenthash() -> ContentHash:
+    on PEER via RELAY:
+        res <- Ens.getContenthash("thiscouldbeyourdomain.eth")
+    <- res
+
+func demoSetContenthash() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setContenthash("thiscouldbeyourdomain.eth", "ipfs://QmaEBknbGT4bTQiQoe2VNgBJbRfygQGktnaW5TbuKixjYL", conf)
+    <- res
+
+func demoGetMultihash() -> string:
+    on PEER via RELAY:
+        res <- Ens.getMultihash("thiscouldbeyourdomain.eth")
+    <- res
+
+func demoSupportsInterface() -> bool:
+    on PEER via RELAY:
+        res <- Ens.supportsInterface("thiscouldbeyourdomain.eth", "addr(bytes32)")
+    <- res
+
+func demoSetMultihash() -> ENSReceipt:
+    on PEER via RELAY:
+        conf <- Convert.getSetResolversTransaction()
+        res <- Ens.setMultihash("thiscouldbeyourdomain.eth", "ipfs://QmaEBknbGT4bTQiQoe2VNgBJbRfygQGktnaW5TbuKixjYL", conf)
+    <- res

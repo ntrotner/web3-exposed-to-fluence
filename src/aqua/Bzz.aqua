@@ -1,4 +1,4 @@
-import "./Web3.aqua"
+import "./types.aqua"
 
 service Bzz("Bzz"):
     uploadString(input: string) -> string

@@ -5,5 +5,6 @@ export const settings = {
   },
   "web3": {
     "provider": "https://api.mycryptoapi.com/eth"
-  }
+  },
+  "production": false
 }

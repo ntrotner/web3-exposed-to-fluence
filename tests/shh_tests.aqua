@@ -1,0 +1,126 @@
+import "./address.aqua"
+import "../src/aqua/types.aqua"
+import "../src/aqua/Convert.aqua"
+import "../src/aqua/Shh.aqua"
+
+func demoGetId() -> u64:
+    on PEER via RELAY:
+        res <- Shh.getId()
+    <- res
+
+func demoIsListening() -> bool:
+    on PEER via RELAY:
+        res <- Shh.isListening()
+    <- res
+
+func demoGetPeerCount() -> u64:
+    on PEER via RELAY:
+        res <- Shh.getPeerCount()
+    <- res
+
+func demoGetVersion() -> string:
+    on PEER via RELAY:
+        res <- Shh.getVersion()
+    <- res
+
+func demoGetInfo() -> Info:
+    on PEER via RELAY:
+        res <- Shh.getInfo()
+    <- res
+
+func demoSetMaxMessageSize() -> bool:
+    on PEER via RELAY:
+        res <- Shh.setMaxMessageSize(64)
+    <- res
+
+func demoSetMinPoW() -> bool:
+    on PEER via RELAY:
+        res <- Shh.setMinPoW(0.9)
+    <- res
+
+func demoMarkTrustedPeer() -> bool:
+    on PEER via RELAY:
+        res <- Shh.markTrustedPeer("")
+    <- res
+
+func demoNewKeyPair() -> string:
+    on PEER via RELAY:
+        res <- Shh.newKeyPair()
+    <- res
+
+func demoAddPrivateKey() -> string:
+    on PEER via RELAY:
+        res <- Shh.addPrivateKey(WALLET_PRIV_KEY)
+    <- res
+
+func demoDeleteKeyPair() -> bool:
+    on PEER via RELAY:
+        res <- Shh.deleteKeyPair("")
+    <- res
+
+func demoHasKeyPair() -> bool:
+    on PEER via RELAY:
+        res <- Shh.hasKeyPair("")
+    <- res
+
+func demoGetPublicKey() -> string:
+    on PEER via RELAY:
+        res <- Shh.getPublicKey("")
+    <- res
+
+func demoGetPrivateKey() -> string:
+    on PEER via RELAY:
+        res <- Shh.getPrivateKey("")
+    <- res
+
+func demoNewSymKey() -> string:
+    on PEER via RELAY:
+        res <- Shh.newSymKey()
+    <- res
+
+func demoAddSymKey() -> string:
+    on PEER via RELAY:
+        res <- Shh.addSymKey("cec94d139ff51d7df1d228812b90c23ec1f909afa0840ed80f1e04030bb681e4")
+    <- res
+
+func demoGenerateSymKeyFromPassword() -> ?string:
+    on PEER via RELAY:
+        res <- Shh.generateSymKeyFromPassword("12345678")
+    <- res
+
+func demoHasSymKey() -> bool:
+    on PEER via RELAY:
+        res <- Shh.hasSymKey("f6dcf21ed6a17bd78d8c4c63195ab997b3b65ea683705501eae82d32667adc92")
+    <- res
+
+func demoGetSymKey() -> string:
+    on PEER via RELAY:
+        res <- Shh.getSymKey("af33b9ffc2387e18636e0a3d0c56b023264c16e78a2adcba1303cefc685e610f")
+    <- res
+
+func demoDeleteSymKey() -> bool:
+    on PEER via RELAY:
+        res <- Shh.deleteSymKey("af33b9ffc2387e18636e0a3d0c56b023264c16e78a2adcba1303cefc685e610f")
+    <- res
+
+func demoPost() -> string:
+    on PEER via RELAY:
+        postObject <- Convert.getPostObject()
+        res <- Shh.post(postObject)
+    <- res
+
+func demoNewMessageFilter() -> string:
+    on PEER via RELAY:
+        options <- Convert.getSubscribeOptions()
+        res <- Shh.newMessageFilter(options)
+    <- res
+
+func demoDeleteMessageFilter() -> bool:
+    on PEER via RELAY:
+        res <- Shh.deleteMessageFilter("2b47fbafb3cce24570812a82e6e93cd9e2551bbc4823f6548ff0d82d2206b326")
+    <- res
+
+func demoGetFilterMessage() -> []Notification:
+    on PEER via RELAY:
+        res <- Shh.getFilterMessage("2b47fbafb3cce24570812a82e6e93cd9e2551bbc4823f6548ff0d82d2206b326")
+    <- res

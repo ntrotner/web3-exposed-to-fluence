@@ -1,0 +1,51 @@
+import "./address.aqua"
+import "../src/aqua/types.aqua"
+import "../src/aqua/Convert.aqua"
+import "../src/aqua/Personal.aqua"
+
+func demoNewAccount() -> string:
+    on PEER via RELAY:
+        res <- Personal.newAccount("password")
+    <- res
+
+func demoSign() -> string:
+    on PEER via RELAY:
+        res <- Personal.sign("Hello world", "0xC66f1507A8c9522E8742f32C36D462173d01510A", "password")
+    <- res
+
+func demoEcRecover() -> string:
+    on PEER via RELAY:
+        res <- Personal.ecRecover("Hello world", "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400")
+    <- res
+
+func demoSignTransaction() -> SignedTransaction:
+    on PEER via RELAY:
+        transaction <- Convert.getTransactionToSignObject()
+        res <- Personal.signTransaction(transaction, "password")
+    <- res
+
+func demoSendTransaction() -> string:
+    on PEER via RELAY:
+        transactionOptions <- Convert.getTransactionOptions()
+        res <- Personal.sendTransaction(transactionOptions, "password")
+    <- res
+
+func demoUnlockAccount() -> bool:
+    on PEER via RELAY:
+        res <- Personal.unlockAccount("0xC66f1507A8c9522E8742f32C36D462173d01510A", "password", 1000)
+    <- res
+
+func demoLockAccount() -> bool:
+    on PEER via RELAY:
+        res <- Personal.lockAccount("0xC66f1507A8c9522E8742f32C36D462173d01510A")
+    <- res
+
+func demoGetAccounts() -> []string:
+    on PEER via RELAY:
+        res <- Personal.getAccounts()
+    <- res
+
+func demoImportRawKey() -> string:
+    on PEER via RELAY:
+        res <- Personal.importRawKey("privKey", "password")
+    <- res

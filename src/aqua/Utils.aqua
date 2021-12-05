@@ -1,32 +1,4 @@
-data TypeValue:
-    type: string
-    value: string
-
-data UnitMap:
-    noether: string
-    wei: string
-    kwei: string
-    babbage: string
-    femtoether: string
-    mwei: string
-    lovelace: string
-    picoether: string
-    gwei: string
-    shannon: string
-    nanoether: string
-    nano: string
-    szabo: string
-    microether: string
-    micro: string
-    finney: string
-    milliether: string
-    milli: string
-    ether: string
-    kether: string
-    grand: string
-    mether: string
-    gether: string
-    tether: string
+import "./types.aqua"
 
 service Utils("Utils"):
     sha3(input: string) -> ?string

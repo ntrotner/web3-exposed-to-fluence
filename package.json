@@ -9,9 +9,15 @@
     "start:tests:utils": "cd tests && aqua -i utils_tests.aqua -o utils_tests.air -a && cd .. && for i in tests/utils_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWEgj11c9Urfw5pAt6ukSdMVFv2Ynk4jc5QLdWvqh2UPpB\"}' --generated; done",
     "start:tests:web3": "cd tests && aqua -i web3_tests.aqua -o web3_tests.air -a && cd .. && for i in tests/web3_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWEgj11c9Urfw5pAt6ukSdMVFv2Ynk4jc5QLdWvqh2UPpB\"}' --generated; done",
     "start:tests:bzz": "cd tests && aqua -i bzz_tests.aqua -o bzz_tests.air -a && cd .. && for i in tests/bzz_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWEgj11c9Urfw5pAt6ukSdMVFv2Ynk4jc5QLdWvqh2UPpB\"}' --generated; done",
-    "start:tests:contract": "cd tests && aqua -i contract_tests.aqua -o contract_tests.air -a && cd .. && for i in tests/contract_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWEgj11c9Urfw5pAt6ukSdMVFv2Ynk4jc5QLdWvqh2UPpB\"}' --generated; done",
+    "start:tests:iban": "cd tests && aqua -i iban_tests.aqua -o iban_tests.air -a && cd .. && for i in tests/iban_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWQNRFwyXwrwiSWrvmr83wDwtLgvqY88TRNGxBjqPbTN67\"}' --generated; done",
+    "start:tests:abi": "cd tests && aqua -i abi_tests.aqua -o abi_tests.air -a && cd .. && for i in tests/abi_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWC1ydbAPYKy35iLEYdADZwLkExame4r65V59UdaqsJFje\"}' --generated; done",
+    "start:tests:contract": "cd tests && aqua -i contract_tests.aqua -o contract_tests.air -a && cd .. && for i in tests/contract_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWF2m8pnPqKabRFSVNvnxcn8L87TfANQPfzg6SAE3TYL6P\"}' --generated; done",
+    "start:tests:personal": "cd tests && aqua -i personal_tests.aqua -o personal_tests.air -a && cd .. && for i in tests/personal_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWA5kPsFuSBKeEfuouCwdZx5h9HH5Hn8FNtv6FyQMnhTfu\"}' --generated; done",
+    "start:tests:accounts": "cd tests && aqua -i accounts_tests.aqua -o accounts_tests.air -a && cd .. && for i in tests/accounts_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWPbSFfNZ6pPmdv5qvhkSXKnQb1UZPMxaahFtWtvb3wqzn\"}' --generated; done",
+    "start:tests:shh": "cd tests && aqua -i shh_tests.aqua -o shh_tests.air -a && cd .. && for i in tests/shh_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWQzEdvupQLy8YGWt9e286GzviHxhcprE7mptAz8R26n7c\"}' --generated; done",
+    "start:tests:ens": "cd tests && aqua -i ens_tests.aqua -o ens_tests.air -a && cd .. && for i in tests/ens_tests.air/*.air; do fldist run_air -p $i -d '{\"node\":\"12D3KooWSqmhYEAxYqTc6juVYG21UWUQZ1GDHzTTSSArhs9GjUiR\"}' --generated; done",
     "compile:ts": "aqua -i ./src/aqua/ -o ./src/compiled",
-    "compile:tests": "cd tests && aqua -i bzz_tests.aqua -o bzz_tests.air -a && aqua -i utils_tests.aqua -o utils_tests.air -a && aqua -i eth_tests.aqua -o eth_tests.air -a && aqua -i bzz_tests.aqua -o bzz_tests.air -a && aqua -i web3_tests.aqua -o web3_tests.air -a"
+    "compile:tests": "cd tests && aqua -i bzz_tests.aqua -o bzz_tests.air -a && aqua -i utils_tests.aqua -o utils_tests.air -a && aqua -i eth_tests.aqua -o eth_tests.air -a && aqua -i bzz_tests.aqua -o bzz_tests.air -a && aqua -i web3_tests.aqua -o web3_tests.air -a && aqua -i accounts_tests.aqua -o accounts_tests.air -a && aqua -i contract_tests.aqua -o contract_tests.air -a  && aqua -i ens_tests.aqua -o ens_tests.air -a && aqua -i iban_tests.aqua -o iban_tests.air -a  && aqua -i personal_tests.aqua -o personal_tests.air -a && aqua -i shh_tests.aqua -o shh_tests.air -a"
   },
   "repository": {
     "type": "git",
@@ -28,6 +34,7 @@
     "@fluencelabs/fluence": "^0.15.2",
     "@fluencelabs/fluence-network-environment": "^1.0.13",
     "ts-node": "^10.4.0",
-    "web3": "^1.6.1"
+    "web3": "^1.6.1",
+    "web3-eth-iban": "^1.6.1"
   }
 }

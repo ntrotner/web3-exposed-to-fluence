@@ -1,6 +1,4 @@
-data IndirectOptions:
-    institution: string
-    identifier: string
+import "./types.aqua"
 
 service Iban("Iban"):
     toAddress(iban: string) -> string

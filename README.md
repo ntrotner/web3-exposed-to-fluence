@@ -1,5 +1,9 @@
 ## Web3.js in Fluence
 
+### Please Read The /src/aqua/doc/* files before dispatching transactions that may cost ether
+
+It contains some useful information, so that you can be sure about input and return types.
+
 ### How to Run
 
 1. Get your `multiaddr` & `peerId` and add them to the `settings.json`.
@@ -18,7 +22,6 @@ Prerequisites: `fldist` `aqua`
 npm run compile:ts
 ```
 
-
 #### Compiling the Tests (Mandatory for Running Tests)
 
 Set the `PEER` and `RELAY` attributes in `tests/address.aqua` and `node` in `package.json`
@@ -26,7 +29,12 @@ Set the `PEER` and `RELAY` attributes in `tests/address.aqua` and `node` in `pac
 ```bash
 npm run compile:tests
 ```
+or
+```bash
+npm run start:tests:contract
+```
+which compiles `contract` tests and runs them
 
 ### Running Tests
-1. Run the Compilation for Tests
-2. `npm run start:tests`
+
+1. `npm run start:tests:...`

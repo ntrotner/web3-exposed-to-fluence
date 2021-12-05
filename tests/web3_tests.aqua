@@ -1,4 +1,6 @@
 import "./address.aqua"
+import "../src/aqua/types.aqua"
+import "../src/aqua/Convert.aqua"
 import "../src/aqua/Web3.aqua"
 
 func demoGetMetaInformation() -> MetaInformation:

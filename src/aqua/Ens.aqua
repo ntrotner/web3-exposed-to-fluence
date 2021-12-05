@@ -1,39 +1,7 @@
-import "./Eth.aqua"
-import "./Abi.aqua"
-import "./Web3.aqua"
-
-data Options:
-    address: string
-    jsonInterface: []AbiItem
-    from: ?string
-    gasPrice: ?string
-    gas: ?u64
-    data: ?string
-
-data Contract:
-    defaultAccount: ?string
-    defaultBlock: string
-    defaultCommon: Common
-    defaultHardfork: string
-    defaultChain: string
-    transactionPollingTimeout: u64
-    transactionConfirmationBlocks: u64
-    transactionBlockTimeout: u64
-    handleRevert: bool
-    options: Options
-
-data Error:
-    name: string
-    message: string
-    stack: ?string
-
-data ContentHash:
-    protocolType: ?string
-    decoded: ?string
-    error: ?Error
+import "./types.aqua"
 
 service Ens("Ens"):
-    registryAddress() -> string
+    registryAddress() -> ?string
     getResolver(name: string) -> Contract
     setResolver(name: string, address: string, txConfig: ?SendTransaction) -> ENSReceipt
     getOwner(name: string) -> string

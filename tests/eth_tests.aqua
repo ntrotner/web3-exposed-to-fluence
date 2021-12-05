@@ -1,6 +1,7 @@
 import "./address.aqua"
-import "../src/aqua/Eth.aqua"
+import "../src/aqua/types.aqua"
 import "../src/aqua/Convert.aqua"
+import "../src/aqua/Eth.aqua"
 
 func demoGetMetaInformation() -> EthMetaInformation:
     on PEER via RELAY:

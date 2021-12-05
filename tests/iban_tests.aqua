@@ -1,7 +1,7 @@
 import "./address.aqua"
-import "../src/aqua/Iban.aqua"
+import "../src/aqua/types.aqua"
 import "../src/aqua/Convert.aqua"
-import "../src/aqua/Web3.aqua"
+import "../src/aqua/Iban.aqua"
 
 func demoToAddress() -> string:
     on PEER via RELAY:

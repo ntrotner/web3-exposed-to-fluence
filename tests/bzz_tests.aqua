@@ -1,6 +1,6 @@
 import "./address.aqua"
 import "../src/aqua/Bzz.aqua"
-import "../src/aqua/Web3.aqua"
+import "../src/aqua/types.aqua"
 import "../src/aqua/Convert.aqua"
 
 func demoUploadObject() -> string:

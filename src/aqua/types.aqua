@@ -1,0 +1,416 @@
+alias StringArray: string
+alias StringObject: string
+
+data CustomChain:
+    name: ?string
+    networkId: u64
+    chainId: u64
+
+data Common:
+    customChain: CustomChain
+    baseChain: ?string
+    hardfork: ?string
+
+data MetaInformation:
+    version: string
+
+data AbiInput:
+    name: string
+    type: string
+    indexed: ?bool
+    internalType: ?string
+
+data AbiOutput:
+    name: string
+    type: string
+    internalType: ?string
+
+data AbiItem:
+    anonymous: ?bool
+    constant: ?bool
+    inputs: ?[]AbiInput
+    name: ?string
+    outputs: ?[]AbiOutput
+    payable: ?bool
+    stateMutability: ?string
+    type: string
+    gas: ?u64
+
+data CipherParams:
+    iv: string
+
+data KDFParams:
+    dklen: u64
+    salt: string
+    n: u64
+    r: u64
+    p: u64
+
+data Crypto:
+    ciphertext: string
+    cipherparams: CipherParams
+    cipher: string
+    kdf: string
+    kdfparams: KDFParams
+    mac: string
+
+data EncryptedKeystoreV3:
+    version: u64
+    id: string
+    address: string
+    crypto: Crypto
+
+data TransactionSettings:
+    from: ?string
+    to: ?string
+    value: ?string
+    gas: ?u64
+    gasPrice: ?u64
+    data: ?string
+    nonce: ?u64
+    chainId: ?u64
+    common: ?Common
+    chain: ?string
+    hardfork: ?string
+
+data SignedTransactionAccounts:
+    messageHash: ?string
+    r: string
+    s: string
+    v: string
+    rawTransaction: ?string
+    transactionHash: ?string
+
+data SignatureData:
+    messageHash: string
+    r: string
+    s: string
+    v: string
+
+data SignedData:
+    message: string
+    signature: string
+    messageHash: ?string
+    r: string
+    s: string
+    v: string
+    rawTransaction: ?string
+    transactionHash: ?string
+
+data Account:
+    address: string
+    privateKey: string
+
+data ContractOptions:
+    from: ?string
+    gasPrice: ?string
+    gas: ?u64
+    data: ?string
+
+data DeployOptions:
+    data: string
+    arguments: ?[]string
+
+data DefaultData:
+    defaultAccount: ?string
+    defaultBlock: ?string
+    defaultBlockNumber: ?u64
+    defaultHardfork: ?string
+    defaultChain: ?string
+    defaultCommon: ?Common
+    transactionBlockTimeout: ?u64
+    transactionConfirmationBlocks: ?u64
+    transactionPollingTimeout: ?u64
+    handleRevert: ?bool
+
+data CallOptions:
+    from: ?string
+    gasPrice: ?string
+    gas: ?u64
+
+data EstimateGasOptions:
+    from: ?string
+    gas: ?u64
+    value: ?string
+
+data SendOptions:
+    from: string
+    gasPrice: ?string
+    gas: ?u64
+    value: ?string
+    nonce: ?u64
+
+data EventOptions:
+    filter: ?StringObject
+    fromBlock: ?string
+    toBlock: ?string
+    topics: ?[]string
+
+data RawEvent:
+    data: string
+    topics: []string
+
+data EventObject:
+    event: string
+    signature: ?string
+    address: string
+    returnValues: StringObject
+    logIndex: u64
+    transactionIndex: u64
+    transactionHash: string
+    blockHash: ?string
+    blockNumber: ?u64
+    raw: RawEvent
+
+data Options:
+    address: string
+    jsonInterface: []AbiItem
+    from: ?string
+    gasPrice: ?string
+    gas: ?u64
+    data: ?string
+
+data Contract:
+    defaultAccount: ?string
+    defaultBlock: string
+    defaultCommon: Common
+    defaultHardfork: string
+    defaultChain: string
+    transactionPollingTimeout: u64
+    transactionConfirmationBlocks: u64
+    transactionBlockTimeout: u64
+    handleRevert: bool
+    options: Options
+
+data Error:
+    name: string
+    message: string
+    stack: ?string
+
+data ContentHash:
+    protocolType: ?string
+    decoded: ?string
+    error: ?Error
+
+data FeeHistory:
+    oldestBlock: u64
+    baseFeePerGas: []string
+    gasUsedRatio: []f64
+    reward: [][]string
+
+data StorageProof:
+    key: string
+    value: string
+
+data Proof:
+    address: string
+    balance: string
+    codeHash: string
+    nonce: string
+    storageHash: string
+    accountProof: []string
+    storageProof: []StorageProof
+
+data Block:
+    number: u64
+    hash: string
+    parentHash: string
+    nonce: ?string
+    sha3Uncles: string
+    logsBloom: ?string
+    transactionRoot: string
+    stateRoot: string
+    miner: string
+    difficulty: u64
+    totalDifficulty: u64
+    extraData: string
+    size: u64
+    gasLimit: u64
+    gasUsed: u64
+    timestamp: u64
+    transactions: []string
+    uncles: []string
+
+data Transaction:
+    hash: string
+    nonce: u64
+    blockHash: string
+    blockNumber: u64
+    transactionIndex: u64
+    from: string
+    to: string
+    value: string
+    gasPrice: string
+    gas: u64
+    input: string
+
+data SendTransaction:
+    from: string
+    to: ?string
+    value: ?string
+    gas: ?u64
+    gasPrice: ?string
+    type: ?string
+    maxFeePerGas: ?string
+    maxPriorityFeePerGas: ?string
+    accessList: ?[]string
+    data: ?string
+    nonce: ?u64
+    chain: ?string
+    hardfork: ?string
+    common: Common
+
+data TX:
+    nonce: string
+    gasPrice: string
+    gas: string
+    to: string
+    value: string
+    input: string
+    r: string
+    s: string
+    v: string
+    hash: string
+
+data SignedTransaction:
+    raw: string
+    tx: TX
+
+data PastLogsOptions:
+    fromBlock: string
+    toBlock: string
+    address: string
+    topics: []string
+
+data PastLogs:
+    address: string
+    data: string
+    topics: []string
+    logIndex: u64
+    transactionIndex: u64
+    transactionHash: string
+    blockHash: ?string
+    blockNumber: ?u64
+
+data Receipt:
+    to: string
+    from: string
+    contractAddress: string
+    transactionIndex: u64
+    root: ?string
+    gasUsed: string
+    logsBloom: string
+    blockHash: string
+    transactionHash: string
+    logs: []PastLogs
+    blockNumber: u64
+    confirmations: u64
+    cumulativeGasUsed: string
+    effectiveGasPrice: string
+    byzantium: bool
+    type: u64
+    status: ?u64
+
+data Syncing:
+    startingBlock: u64
+    currentBlock: u64
+    highestBlock: u64
+    knownStates: u64
+    pulledStates: u64
+
+data EthMetaInformation:
+    defaultAccount: string
+    defaultBlock: string
+    defaultHardfork: string
+    defaultChain: string
+    transactionBlockTimeout: u64
+    transactionConfirmationBlocks: u64
+    transactionPollingTimeout: u64
+    handleRevert: bool
+    isSyncing: ?Syncing
+    isMining: bool
+
+data ENSReceipt:
+    status: bool
+    transactionHash: string
+    transactionIndex: u64
+    blockHash: string
+    blockNumber: u64
+    from: string
+    to: string
+    contractAddress: ?string
+    cumulativeGasUsed: u64
+    gasUsed: u64
+    logs: []PastLogs
+    logsBloom: string
+
+data IndirectOptions:
+    institution: string
+    identifier: string
+
+data Info:
+    messages: u64
+    maxMessageSize: u64
+    memory: u64
+    minPow: u64
+
+data Post:
+    symKeyID: ?string
+    pubKey: ?string
+    sig: ?string
+    ttl: u64
+    topic: string
+    payload: string
+    padding: ?u64
+    powTime: ?u64
+    powTarget: ?u64
+    targetPeer: ?u64
+
+data SubscribeOptions:
+    symKeyID: string
+    privateKeyID: string
+    sig: ?string
+    topics: []string
+    minPow: ?u64
+    allowP2P: ?bool
+
+data Notification:
+    hash: string
+    sig: string
+    recipientPublicKey: string
+    timestamp: string
+    ttl: u64
+    topic: string
+    payload: string
+    padding: u64
+    pow: u64
+
+data TypeValue:
+    type: string
+    value: string
+
+data UnitMap:
+    noether: string
+    wei: string
+    kwei: string
+    babbage: string
+    femtoether: string
+    mwei: string
+    lovelace: string
+    picoether: string
+    gwei: string
+    shannon: string
+    nanoether: string
+    nano: string
+    szabo: string
+    microether: string
+    micro: string
+    finney: string
+    milliether: string
+    milli: string
+    ether: string
+    kether: string
+    grand: string
+    mether: string
+    gether: string
+    tether: string

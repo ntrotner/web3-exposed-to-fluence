@@ -1,8 +1,4 @@
-data MetaInformation:
-    version: string
-
-alias StringObject: string
-alias StringArray: string
+import "./types.aqua"
 
 service Web3("Web3"):
     getMetaInformation() -> MetaInformation

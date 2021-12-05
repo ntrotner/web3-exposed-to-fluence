@@ -1,5 +1,4 @@
-import "./Eth.aqua"
-import "./Accounts.aqua"
+import "./types.aqua"
 
 service Personal("Personal"):
     newAccount(password: string) -> string
