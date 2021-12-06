@@ -4,7 +4,7 @@ export const settings = {
     "peerId": ""
   },
   "web3": {
-    "provider": "https://api.mycryptoapi.com/eth"
+    "provider": "http://127.0.0.1:8545/"
   },
   "production": false
 }
