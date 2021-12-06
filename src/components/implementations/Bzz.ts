@@ -52,9 +52,9 @@ export class Bzz implements BzzDef {
    * @param input
    * @param callParams
    */
-  uploadObject(input: string, callParams: CallParams<'input'>): string | Promise<string> {
+  async uploadObject(input: string, callParams: CallParams<'input'>): Promise<string> {
     let parsedObject = JSON.parse(input);
-    return this.web3.bzz.upload(parsedObject);
+    return await this.web3.bzz.upload(parsedObject);
   }
   
   /**

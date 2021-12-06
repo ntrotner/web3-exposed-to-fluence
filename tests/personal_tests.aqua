@@ -47,5 +47,5 @@ func demoGetAccounts() -> []string:
 
 func demoImportRawKey() -> string:
     on PEER via RELAY:
-        res <- Personal.importRawKey("privKey", "password")
+        res <- Personal.importRawKey(WALLET_PRIV_KEY, "password")
     <- res

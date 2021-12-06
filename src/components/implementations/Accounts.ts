@@ -86,11 +86,18 @@ export class Accounts implements AccountsDef {
    * @param callParams
    */
   async wallet(callParams: CallParams<null>): Promise<{ address: string; privateKey: string }[]> {
-    let allAccounts = await this.web3.eth.getAccounts();
-    let response = await this.web3.eth.accounts.wallet;
-    return allAccounts.map((account) => {
-      return { address: account, privateKey: response[account].privateKey };
+    let response = this.web3.eth.accounts.wallet;
+    let result = [];
+    Object.keys(response).forEach((key) => {
+      try {
+        let account = { address: response[key].address, privateKey: response[key].privateKey };
+        let foundAcc = result.find((acc) => acc.address === account.address);
+        if (!foundAcc && response[key].address && response[key].privateKey) result.push(account);
+      } catch {
+        // do nothing
+      }
     });
+    return result;
   }
   
   walletAdd(privateKey: string, callParams: CallParams<'privateKey'>): { address: string; privateKey: string } | Promise<{ address: string; privateKey: string }> {

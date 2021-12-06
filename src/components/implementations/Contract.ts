@@ -61,7 +61,7 @@ export class Contract implements ContractDef {
       };
     });
     
-    return (new this.web3.eth.Contract(typedJSONInterface, address, options)).deploy(deployOptions).estimateGas();
+    return (new this.web3.eth.Contract(typedJSONInterface, address, options)).deploy(deployOptions).estimateGas(gasOption);
   }
   
   /**
@@ -90,14 +90,14 @@ export class Contract implements ContractDef {
         
         let response = await (new this.web3.eth.Contract(typedJSONInterface, address, {
           ...options,
-          data: options.data ? options.data : ''
+          data: options.data ? options.data : null
         }))
           .deploy(deployOptions)
           .send(sendOptions, (onerror, transactionHash) => {
             resolve(transactionHash);
           });
       } catch (e) {
-        return e;
+        resolve(e);
       }
     });
   }
@@ -281,8 +281,10 @@ export class Contract implements ContractDef {
     });
     
     try {
+      console.log((new this.web3.eth.Contract(typedJSONInterface, address, options)).methods);
       return (new this.web3.eth.Contract(typedJSONInterface, address, options)).methods[methodName](...JSON.parse(parameters)).send(sendOptions);
     } catch (e) {
+      console.log(e);
       return e;
     }
   }
