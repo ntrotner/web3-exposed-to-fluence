@@ -17,10 +17,10 @@ func demoDeployEstimateGas() -> u64:
     on PEER via RELAY:
         jsonInterface <- Convert.getABIItem()
         contractOptions <- Convert.getContractOptions()
-        deployOptions <- Convert.getDeployOptions()
+        deployOptions <- Convert.getDeployOptionsGas()
         gasOptions <- Convert.getEstimateGasOptions()
         address <- Convert.getOptionalString(WALLET_PUB_KEY)
-        res <- Contract.deployEstimateGas(jsonInterface, address, contractOptions, deployOptions, gasOptions)
+        res <- Contract.deployEstimateGas(jsonInterface, nil, contractOptions, deployOptions, gasOptions)
     <- res
 
 func demoDeployEncodeABI() -> string:
@@ -29,16 +29,60 @@ func demoDeployEncodeABI() -> string:
         contractOptions <- Convert.getContractOptions()
         deployOptions <- Convert.getDeployOptions()
         address <- Convert.getOptionalString(WALLET_PUB_KEY)
-        res <- Contract.deployEncodeABI(jsonInterface, address, contractOptions, deployOptions)
+        res <- Contract.deployEncodeABI(jsonInterface, nil, contractOptions, deployOptions)
     <- res
 
+func demoMethodSend() -> StringObject:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        sendOptions <- Convert.getSendOptions()
+        address <- Convert.getOptionalString("0xD2236D3E2803Ff54Ed1621D6f7F4B778712Ae05a")
+        res <- Contract.methodSend(jsonInterface, address, contractOptions, "store(uint256)", "[5]", sendOptions)
+    <- res
 
 func demoMethodCall() -> StringObject:
     on PEER via RELAY:
-        jsonInterface <- Convert.getABIItemRopsten()
+        jsonInterface <- Convert.getABIItem()
         contractOptions <- Convert.getContractOptions()
-        deployOptions <- Convert.getDeployOptions()
-        address <- Convert.getOptionalString("0xCE66B4B15CbCCFe031dB38be60Dfc3f98eBaEbf0")
-        -- res <- Contract.methodCall(jsonInterface, address, contractOptions, deployOptions)
-        res = ""
+        callOptions <- Convert.getCallOptions()
+        address <- Convert.getOptionalString("0xD2236D3E2803Ff54Ed1621D6f7F4B778712Ae05a")
+        res <- Contract.methodCall(jsonInterface, address, contractOptions, "retrieve()", "[]", callOptions)
+    <- res
+
+func demoMethodEstimateGas() -> u64:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        callOptions <- Convert.getCallOptions()
+        address <- Convert.getOptionalString("0xD2236D3E2803Ff54Ed1621D6f7F4B778712Ae05a")
+        gasOptions <- Convert.getEstimateGasOptions()
+        res <- Contract.methodEstimateGas(jsonInterface, address, contractOptions, "retrieve()", "[]", gasOptions)
+    <- res
+
+func demoMethodEncodeABI() -> string:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        address <- Convert.getOptionalString("0xD2236D3E2803Ff54Ed1621D6f7F4B778712Ae05a")
+        res <- Contract.methodEncodeABI(jsonInterface, address, contractOptions, "retrieve()", "[]")
+    <- res
+
+
+func demoGetAllEvents() -> []EventObject:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        address <- Convert.getOptionalString("0xD2236D3E2803Ff54Ed1621D6f7F4B778712Ae05a")
+        eventOptions <- Convert.getEventOptions()
+        res <- Contract.getAllEvents(jsonInterface, address, contractOptions, eventOptions)
+    <- res
+
+func demoGetPastEvents() -> []EventObject:
+    on PEER via RELAY:
+        jsonInterface <- Convert.getABIItem()
+        contractOptions <- Convert.getContractOptions()
+        address <- Convert.getOptionalString("0xD2236D3E2803Ff54Ed1621D6f7F4B778712Ae05a")
+        eventOptions <- Convert.getEventOptions()
+        res <- Contract.getPastEvents(jsonInterface, address, contractOptions, "allEvents", eventOptions)
     <- res

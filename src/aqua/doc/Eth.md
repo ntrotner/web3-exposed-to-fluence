@@ -70,9 +70,3 @@ getWork
 
 Signing also requires to create an account on the node,
 which the public nodes disable.
-
-Untested:
-```markdown
-sendSignedTransaction
-sendTransaction
-```

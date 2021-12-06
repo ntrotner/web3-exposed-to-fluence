@@ -26,6 +26,7 @@ export interface ConvertDef {
     getDecodeLogArray: (callParams: CallParams<null>) => { indexed: boolean | null; internalType: string | null; name: string; type: string; }[] | Promise<{ indexed: boolean | null; internalType: string | null; name: string; type: string; }[]>;
     getDecryptEncryptedKeystoreV3: (callParams: CallParams<null>) => { address: string; crypto: { cipher: string; cipherparams: { iv: string; }; ciphertext: string; kdf: string; kdfparams: { dklen: number; n: number; p: number; r: number; salt: string; }; mac: string; }; id: string; version: number; }[] | Promise<{ address: string; crypto: { cipher: string; cipherparams: { iv: string; }; ciphertext: string; kdf: string; kdfparams: { dklen: number; n: number; p: number; r: number; salt: string; }; mac: string; }; id: string; version: number; }[]>;
     getDeployOptions: (callParams: CallParams<null>) => { arguments: string[] | null; data: string; } | Promise<{ arguments: string[] | null; data: string; }>;
+    getDeployOptionsGas: (callParams: CallParams<null>) => { arguments: string[] | null; data: string; } | Promise<{ arguments: string[] | null; data: string; }>;
     getEncodeFunctionCallJSONInterface: (callParams: CallParams<null>) => { anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string; }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string; }[] | null; payable: boolean | null; stateMutability: string | null; type: string; } | Promise<{ anonymous: boolean | null; constant: boolean | null; gas: number | null; inputs: { indexed: boolean | null; internalType: string | null; name: string; type: string; }[] | null; name: string | null; outputs: { internalType: string | null; name: string; type: string; }[] | null; payable: boolean | null; stateMutability: string | null; type: string; }>;
     getEncryptedKeystoreV3: (callParams: CallParams<null>) => { address: string; crypto: { cipher: string; cipherparams: { iv: string; }; ciphertext: string; kdf: string; kdfparams: { dklen: number; n: number; p: number; r: number; salt: string; }; mac: string; }; id: string; version: number; } | Promise<{ address: string; crypto: { cipher: string; cipherparams: { iv: string; }; ciphertext: string; kdf: string; kdfparams: { dklen: number; n: number; p: number; r: number; salt: string; }; mac: string; }; id: string; version: number; }>;
     getEstimateGasObject: (callParams: CallParams<null>) => { accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; } | Promise<{ accessList: string[] | null; chain: string | null; common: { baseChain: string | null; customChain: { chainId: number; name: string | null; networkId: number; }; hardfork: string | null; }; data: string | null; from: string; gas: number | null; gasPrice: string | null; hardfork: string | null; maxFeePerGas: string | null; maxPriorityFeePerGas: string | null; nonce: number | null; to: string | null; type: string | null; value: string | null; }>;
@@ -128,6 +129,14 @@ export function registerConvert(...args: any) {
         },
         {
             "functionName" : "getDeployOptions",
+            "argDefs" : [
+            ],
+            "returnType" : {
+                "tag" : "primitive"
+            }
+        },
+        {
+            "functionName" : "getDeployOptionsGas",
             "argDefs" : [
             ],
             "returnType" : {

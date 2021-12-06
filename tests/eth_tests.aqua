@@ -140,7 +140,7 @@ func demoGetWork() -> []string:
 
 func demoSign() -> string:
      on PEER via RELAY:
-         res <- Eth.sign("Hello world", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
+         res <- Eth.sign("Hello world", "0xf7785F6d1B0c6187Fe0a3B620E273F8EF7410b63")
      <- res
 
 func demoSignTransaction() -> SignedTransaction:
@@ -152,4 +152,17 @@ func demoSignTransaction() -> SignedTransaction:
 func demoSubmitWork() -> bool:
      on PEER via RELAY:
          res <- Eth.submitWork("0x0000000000000001", "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000")
+     <- res
+
+func demoSendTransaction() -> string:
+     on PEER via RELAY:
+         transaction <- Convert.getTransactionToSignObject()
+         res <- Eth.sendTransaction(transaction)
+     <- res
+
+
+func demoSendSignedTransaction() -> string:
+     on PEER via RELAY:
+         signedTransaction <- Eth.sign("Hello world", "0xf7785F6d1B0c6187Fe0a3B620E273F8EF7410b63")
+         res <- Eth.sendSignedTransaction(signedTransaction)
      <- res

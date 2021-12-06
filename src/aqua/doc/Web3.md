@@ -17,3 +17,10 @@ allowed to do by the service provider, as malicious URL's etc. could lead to a s
 The best example why I avoid numbers as best as I can is the `hexToNumber` function.
 When giving it a hex that results in a number that uses more than 53 bits it will fail the
 calculation. So, use the string functions instead.
+
+### Shh
+Seems to work on some nodes, but most methods seem to be
+deprecated on popular nodes
+
+### Ens
+I couldn't test it as test nodes and private networks don't support it
