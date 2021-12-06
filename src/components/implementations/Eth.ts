@@ -177,10 +177,17 @@ export class Eth implements EthDef {
    */
   async getUncle(blockHashOrBlockNumber: string, uncleIndex: number, callParams: CallParams<'blockHashOrBlockNumber' | 'uncleIndex'>): Promise<{ difficulty: number; extraData: string; gasLimit: number; gasUsed: number; hash: string; logsBloom: string | null; miner: string; nonce: string | null; number: number; parentHash: string; sha3Uncles: string; size: number; stateRoot: string; timestamp: number; totalDifficulty: number; transactions: string[]; transactionRoot: string; uncles: string[] } | null> {
     const response = await this.web3.eth.getUncle(blockHashOrBlockNumber, uncleIndex);
-    return response ? {
-      ...response,
-      timestamp: response.timestamp ? Number(response.timestamp) : null
-    } : null;
+    try {
+      return response ? {
+        ...response,
+        timestamp: response.timestamp ? Number(response.timestamp) : null
+      } : null;
+    } catch {
+      return response ? {
+        ...response,
+        timestamp: null
+      } : null;
+    }
   }
   
   getWork(callParams: CallParams<null>): string[] | Promise<string[]> {

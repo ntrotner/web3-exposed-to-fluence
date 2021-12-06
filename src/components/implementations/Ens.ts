@@ -87,8 +87,8 @@ export class Ens implements EnsDef {
               return {
                 indexed: abiInput.indexed || null,
                 internalType: abiInput.internalType || null,
-                type: abiInput.type,
-                name: abiInput.name
+                type: abiInput.type || null,
+                name: abiInput.name || null
               };
             }) : null
           };
@@ -142,7 +142,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -176,7 +176,7 @@ export class Ens implements EnsDef {
           }
         );
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -209,7 +209,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -242,7 +242,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -275,7 +275,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -308,7 +308,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -342,7 +342,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -377,7 +377,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -410,7 +410,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -444,7 +444,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -480,7 +480,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }
@@ -513,7 +513,7 @@ export class Ens implements EnsDef {
           }
         });
       } catch (e) {
-        return e;
+        rej(e);
       }
     });
   }

@@ -90,6 +90,7 @@ export class Accounts implements AccountsDef {
     let result = [];
     Object.keys(response).forEach((key) => {
       try {
+        // add account to list if object has address and privateKey and if it isn't in the list already
         let account = { address: response[key].address, privateKey: response[key].privateKey };
         let foundAcc = result.find((acc) => acc.address === account.address);
         if (!foundAcc && response[key].address && response[key].privateKey) result.push(account);
@@ -113,7 +114,7 @@ export class Accounts implements AccountsDef {
    */
   async walletClear(callParams: CallParams<null>): Promise<{ address: string; privateKey: string }[]> {
     let allAccounts = await this.wallet(null);
-    await this.web3.eth.accounts.wallet.clear();
+    this.web3.eth.accounts.wallet.clear();
     return allAccounts;
   }
   
