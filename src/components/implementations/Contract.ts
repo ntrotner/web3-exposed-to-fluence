@@ -281,10 +281,8 @@ export class Contract implements ContractDef {
     });
     
     try {
-      console.log((new this.web3.eth.Contract(typedJSONInterface, address, options)).methods);
       return (new this.web3.eth.Contract(typedJSONInterface, address, options)).methods[methodName](...JSON.parse(parameters)).send(sendOptions);
     } catch (e) {
-      console.log(e);
       return e;
     }
   }
